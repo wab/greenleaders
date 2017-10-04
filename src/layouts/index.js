@@ -37,9 +37,9 @@ const Header = () => (
 const TemplateWrapper = ({ children }) => (
   <div>
     <Helmet
-      title="Gatsby Default Starter"
+      title="GreenLeaders"
       meta={[
-        { name: 'description', content: 'Sample' },
+        { name: 'description', content: 'GreenLeaders - Act Beautiful' },
         { name: 'keywords', content: 'sample, something' },
       ]}
     />
