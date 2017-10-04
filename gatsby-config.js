@@ -34,5 +34,11 @@ module.exports = {
         accessToken: `544541f0fd22c2613ea611e30af0feccef88e4e31e789dc21af005fd000b186c`,
       },
     },
+    {
+      resolve: `gatsby-plugin-typography`,
+      options: {
+        pathToConfigModule: `src/utils/typography.js`,
+      },
+    },
   ],
 }

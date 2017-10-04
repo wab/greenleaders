@@ -1,6 +1,10 @@
 @import './scss/common/settings';
 @import '~foundation-sites/scss/foundation';
-@include foundation-global-styles;
+// @include foundation-global-styles;
 
-
+// Common styles
 @import './scss/common/global';
+@import './scss/common/utils';
+
+// Components
+@import './scss/components/navigation'

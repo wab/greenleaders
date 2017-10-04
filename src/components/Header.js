@@ -1,20 +1,15 @@
 import React from 'react'
 import Link from 'gatsby-link'
+import Container from '../components/Container'
 
 const Header = () => (
   <div
     style={{
       background: '#61a36e',
-      marginBottom: '1.45rem',
+      padding: '1.45rem 0',
     }}
   >
-    <div
-      style={{
-        margin: '0 auto',
-        maxWidth: 960,
-        padding: '1.45rem 1.0875rem',
-      }}
-    >
+    <Container>
       <h1 style={{ margin: 0 }}>
         <Link
           to="/"
@@ -26,7 +21,7 @@ const Header = () => (
           Act Beautiful - GreenLeaders
         </Link>
       </h1>
-    </div>
+    </Container>
   </div>
 )
 

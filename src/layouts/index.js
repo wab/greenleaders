@@ -3,10 +3,12 @@ import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
 import Helmet from 'react-helmet'
 import Header from '../components/Header'
+import Navigation from '../components/Navigation'
+import Container from '../components/Container'
 
 import '../main.scss';
 
-const TemplateWrapper = ({ children }) => (
+const TemplateWrapper = ({ children, data }) => (
   <div className="mainWrapper">
     <Helmet
       title="GreenLeaders"
@@ -16,9 +18,12 @@ const TemplateWrapper = ({ children }) => (
       ]}
     />
     <Header />
-    <main className="mainContainer">
-      {children()}
-    </main>
+    <Navigation data={data} />
+    <Container>
+      <main>
+        {children()}
+      </main>
+    </Container>
   </div>
 )
 
@@ -27,3 +32,16 @@ TemplateWrapper.propTypes = {
 }
 
 export default TemplateWrapper
+
+export const query = graphql`
+  query NavigationQuery {
+    allContentfulRubrique {
+      edges {
+        node {
+          title
+          slug
+        }
+      }
+    }
+  }
+`
