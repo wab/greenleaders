@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Link from "gatsby-link";
+import _ from "lodash";
 
 class RubriqueTemplate extends Component {
   // getInitialState
@@ -8,7 +9,14 @@ class RubriqueTemplate extends Component {
     posts: this.props.data.allContentfulArticle.edges
   };
 
-  filterPosts = filteredPosts => {
+  filterPosts = categoryId => {
+    const allPosts = this.props.data.allContentfulArticle.edges;
+
+    const filteredPosts = categoryId
+      ? _.filter(allPosts, ({ node: post }) =>
+          _.some(post.categories, { id: categoryId })
+        )
+      : allPosts;
 
     this.setState({
       posts: filteredPosts
@@ -19,26 +27,24 @@ class RubriqueTemplate extends Component {
     this.setState({
       posts: this.props.data.allContentfulArticle.edges
     });
-  }
+  };
 
   render() {
     const { title, subcategories } = this.props.data.contentfulRubrique;
-    const posts = this.props.data.allContentfulArticle.edges;
-
-    console.log(this.state.posts);
+    const posts = this.state.posts;
 
     return (
       <div>
         <Link to="/">&larr; Retour</Link>
         <h1>{title}</h1>
         {subcategories && (
-          <ul>
+          <ul className="submenu">
+            <li>
+              <button onClick={() => this.filterPosts()}>Tous</button>
+            </li>
             {subcategories.map((category, index) => (
               <li key={index}>
-                <button
-                  href="#"
-                  onClick={() => this.filterPosts(category.article)}
-                >
+                <button href="#" onClick={() => this.filterPosts(category.id)}>
                   {category.title}
                 </button>
               </li>
@@ -67,22 +73,16 @@ export default RubriqueTemplate;
 export const query = graphql`
   query RubriqueQuery($id: String) {
     contentfulRubrique(id: { eq: $id }) {
-      id
       title
       subcategories {
         id
         slug
         title
-        article {
-          id
-          title
-        }
       }
     }
     allContentfulArticle {
       edges {
         node {
-          id
           slug
           title
           categories {
