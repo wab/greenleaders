@@ -30,8 +30,8 @@ module.exports = {
     {
       resolve: `gatsby-source-contentful`,
       options: {
-        spaceId: `zn4n7b753qwt`,
-        accessToken: `544541f0fd22c2613ea611e30af0feccef88e4e31e789dc21af005fd000b186c`,
+        spaceId: `7yrilk3o6kx9`,
+        accessToken: `4dcced53197c7a3c59a33f4208bc155ea68d573ec9772648d4abead5e20fab21`,
       },
     },
     {

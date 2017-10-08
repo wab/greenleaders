@@ -3,14 +3,9 @@ import Link from 'gatsby-link'
 import Container from '../components/Container'
 
 const Header = () => (
-  <div
-    style={{
-      background: '#61a36e',
-      padding: '1.45rem 0',
-    }}
+  <header className="mainHeader"
   >
-    <Container>
-      <h1 style={{ margin: 0 }}>
+      <h1 className="mainHeader-title">
         <Link
           to="/"
           style={{
@@ -18,11 +13,10 @@ const Header = () => (
             textDecoration: 'none',
           }}
         >
-          Act Beautiful - GreenLeaders
+          GreenLeaders
         </Link>
       </h1>
-    </Container>
-  </div>
+  </header>
 )
 
 export default Header;

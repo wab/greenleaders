@@ -5,9 +5,16 @@
 
   &-item {
     display: inline-block;
+
     a {
       display: block;
       padding: $global-padding;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    &.secondary a {
+      color: $medium-gray;
     }
   }
 }

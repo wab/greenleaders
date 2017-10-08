@@ -3,7 +3,7 @@ import Link from "gatsby-link";
 import Container from "../components/Container";
 
 const Navigation = ({ data }) => {
-  const rubriques = data.allContentfulRubrique.edges;
+  const rubriques = data.allContentfulCategorie.edges;
   return (
     <nav className="Navigation">
       <Container>
@@ -12,17 +12,20 @@ const Navigation = ({ data }) => {
             rubriques.map(({ node: rubrique }, index) => (
               <li key={index} className="Navigation-item">
                 <Link
-                  to={`/rubrique/${rubrique.slug}`}
+                  to={`/categorie/${rubrique.slug}`}
                   activeClassName="active"
                 >
                   {rubrique.title}
                 </Link>
               </li>
             ))}
-          <li className="Navigation-item">
+          <li className="Navigation-item secondary">
             <Link to="/faq" activeClassName="active">
               FAQ
             </Link>
+          </li>
+          <li className="Navigation-item secondary">
+            <a href="#">e-learning</a>
           </li>
         </ul>
       </Container>
