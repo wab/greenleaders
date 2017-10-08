@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Link from "gatsby-link";
 import _ from "lodash";
 
-class RubriqueTemplate extends Component {
+class CategoryTemplate extends Component {
   // getInitialState
   state = {
     subCategory: null,
@@ -30,7 +30,7 @@ class RubriqueTemplate extends Component {
   };
 
   render() {
-    const { title, subcategories } = this.props.data.contentfulRubrique;
+    const { title, subcategories } = this.props.data.contentfulCategorie;
     const posts = this.state.posts;
 
     return (
@@ -68,13 +68,13 @@ class RubriqueTemplate extends Component {
   }
 }
 
-export default RubriqueTemplate;
+export default CategoryTemplate;
 
 export const query = graphql`
-  query RubriqueQuery($id: String) {
-    contentfulRubrique(id: { eq: $id }) {
+  query CategoryQuery($id: String) {
+    contentfulCategorie(id: { eq: $id }) {
       title
-      subcategories {
+      menu {
         id
         slug
         title
@@ -85,7 +85,7 @@ export const query = graphql`
         node {
           slug
           title
-          categories {
+          rubrique {
             id
             slug
             title

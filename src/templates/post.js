@@ -9,16 +9,16 @@ const PostTemplate = ({ data }) => {
   const {
     title,
     subtitle,
-    categories,
+    rubrique,
     id,
     thumbnail,
     thumbAlt,
     summary,
-    mainContent,
+    main,
     speech
   } = data.contentfulArticle;
 
-  const onTheme = _.filter(categories.article, post => post.id !== id);
+  const onTheme = _.filter(rubrique.article, post => post.id !== id);
   const postIndex = _.find(
     data.allContentfulArticle.edges,
     ({ node: post }) => post.id === id
@@ -50,12 +50,12 @@ const PostTemplate = ({ data }) => {
         </aside>
       )}
 
-      {mainContent && (
+      {main && (
         <div>
           <p>in concreto</p>
           <div
             dangerouslySetInnerHTML={{
-              __html: mainContent.childMarkdownRemark.html
+              __html: main.childMarkdownRemark.html
             }}
           />
         </div>
@@ -111,7 +111,6 @@ export const query = graphql`
   query PostQuery($id: String) {
     contentfulArticle(id: { eq: $id }) {
       id
-      highlight
       title
       subtitle
       thumbnail {
@@ -129,7 +128,7 @@ export const query = graphql`
           html
         }
       }
-      mainContent {
+      main {
         childMarkdownRemark {
           html
         }
@@ -140,11 +139,7 @@ export const query = graphql`
         }
       }
       moreInfoUrl
-      rubric {
-        id
-        slug
-      }
-      categories {
+      rubrique {
         slug
         title
         article {

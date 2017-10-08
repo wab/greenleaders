@@ -58,7 +58,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         graphql(
           `
             {
-              allContentfulRubrique(limit: 1000) {
+              allContentfulCategorie(limit: 1000) {
                 edges {
                   node {
                     id
@@ -74,10 +74,10 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
           }
 
           // Create Category pages
-          const rubriqueTemplate = path.resolve(`./src/templates/rubrique.js`)
+          const rubriqueTemplate = path.resolve(`./src/templates/category.js`)
           // We want to create a detailed page for each
           // category node. We'll just use the Contentful id for the slug.
-          _.each(result.data.allContentfulRubrique.edges, edge => {
+          _.each(result.data.allContentfulCategorie.edges, edge => {
             // Gatsby uses Redux to manage its internal state.
             // Plugins and sites can use functions like "createPage"
             // to interact with Gatsby.
@@ -86,7 +86,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
               // as a template component. The `context` is
               // optional but is often necessary so the template
               // can query data specific to each page.
-              path: `/rubrique/${edge.node.slug}/`,
+              path: `/categorie/${edge.node.slug}/`,
               component: slash(rubriqueTemplate),
               context: {
                 id: edge.node.id,

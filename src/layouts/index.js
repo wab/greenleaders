@@ -35,7 +35,7 @@ export default TemplateWrapper
 
 export const query = graphql`
   query NavigationQuery {
-    allContentfulRubrique {
+    allContentfulCategorie {
       edges {
         node {
           title
