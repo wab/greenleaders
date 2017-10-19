@@ -19,7 +19,8 @@
     "hedron": "^0.7.1",
     "moment": "^2.19.1",
     "styled-components": "^2.2.1",
-    "styled-map": "^2.0.1"
+    "styled-map": "^2.0.1",
+    "styled-theming": "^2.2.0"
   },
   "keywords": [
     "gatsby"

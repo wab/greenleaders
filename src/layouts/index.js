@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Link from "gatsby-link";
 import Helmet from "react-helmet";
@@ -8,13 +8,9 @@ import Navigation from "../components/Navigation";
 import Container from "../components/Container";
 import Footer from "../components/Footer";
 
-const Main = styled.main`
-  padding: 1.5em 0;
-`;
-
 class TemplateWrapper extends Component {
   render() {
-    const isHeaderExtended = this.props.location.pathname === '/';
+    const isHeaderExtended = this.props.location.pathname === "/";
     return (
       <div className="mainWrapper">
         <Helmet
@@ -26,7 +22,7 @@ class TemplateWrapper extends Component {
         />
         <Header extended={isHeaderExtended} />
         <Navigation data={this.props.data} />
-        <Main>{this.props.children()}</Main>
+        <main>{this.props.children()}</main>
         <Footer />
       </div>
     );
@@ -41,7 +37,7 @@ export default TemplateWrapper;
 
 export const query = graphql`
   query NavigationQuery {
-    allContentfulCategorie(sort: {fields: [order]}) {
+    allContentfulCategorie(sort: { fields: [order] }) {
       edges {
         node {
           title
