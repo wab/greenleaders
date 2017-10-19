@@ -13,8 +13,6 @@ const rubriqueColor = styledMap("rubrique", {
   default: colors.primary
 });
 
-console.log({ rubriqueColor });
-
 const MainNavigation = styled.nav`
   border-bottom: 1px solid rgba(47, 47, 48, 0.15);
   text-align: center;
