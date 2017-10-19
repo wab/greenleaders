@@ -5,17 +5,17 @@ import styled from "styled-components";
 
 import headerImg from "../assets/images/header.jpg";
 import headerImgBig from "../assets/images/header-accueil.jpg";
-import logo from "../assets/images/greenleaders.png";
+import blockmark from "../assets/svg/blockmark.svg";
 
 const MainHeader = styled.header`
   background-color: #61a36e;
-  background-image: url(${headerImgBig});
+  background-image: url(${headerImg});
   background-position: center;
   background-size: cover;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: ${props => props.extended ? '80vh' : '160px'};
+  height: ${props => (props.extended ? "80vh" : "285px")};
   position: relative;
   transition: height 250ms ease-in;
 
@@ -31,20 +31,26 @@ const MainHeader = styled.header`
 
       img {
         margin-bottom: 0;
+        transition: all 250ms ease-in;
       }
     }
-
   }
 `;
 
-const Header = (props) => {
+const Header = props => {
   return (
     <MainHeader extended={props.extended}>
       <h1>
-        <Link to="/"><img src={logo} alt="GreenLeaders" /></Link>
+        <Link to="/">
+          <img
+            src={blockmark}
+            alt="GreenLeaders"
+            width={props.extended ? "500" : "350"}
+          />
+        </Link>
       </h1>
     </MainHeader>
   );
-}
+};
 
 export default Header;

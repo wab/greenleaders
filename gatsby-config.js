@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `GreenLeaders`,
+    title: `GreenLeaders`
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -9,36 +9,29 @@ module.exports = {
     `gatsby-transformer-remark`,
     `gatsby-plugin-styled-components`,
     {
-      resolve: `gatsby-transformer-remark`,
+      resolve: `gatsby-remark-images`,
       options: {
-        plugins: [
-          {
-            resolve: `gatsby-remark-images`,
-            options: {
-              // It's important to specify the maxWidth (in pixels) of
-              // the content container as this plugin uses this as the
-              // base for generating different widths of each image.
-              maxWidth: 590,
-              // Remove the default behavior of adding a link to each
-              // image.
-              linkImagesToOriginal: false,
-            },
-          },
-        ]
+        // It's important to specify the maxWidth (in pixels) of
+        // the content container as this plugin uses this as the
+        // base for generating different widths of each image.
+        maxWidth: 590,
+        // Remove the default behavior of adding a link to each
+        // image.
+        linkImagesToOriginal: false
       }
     },
     {
       resolve: `gatsby-source-contentful`,
       options: {
         spaceId: `7yrilk3o6kx9`,
-        accessToken: `4dcced53197c7a3c59a33f4208bc155ea68d573ec9772648d4abead5e20fab21`,
-      },
+        accessToken: `4dcced53197c7a3c59a33f4208bc155ea68d573ec9772648d4abead5e20fab21`
+      }
     },
     {
       resolve: `gatsby-plugin-typography`,
       options: {
-        pathToConfigModule: `src/utils/typography.js`,
-      },
-    },
-  ],
-}
+        pathToConfigModule: `src/utils/typography.js`
+      }
+    }
+  ]
+};

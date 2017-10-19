@@ -6,7 +6,7 @@ import logo from "../assets/svg/logo-footer.svg";
 
 const MainFooter = styled.footer`
   border-top: 1px solid rgba(47, 47, 48, 0.15);
-  padding: 1.5em 0;
+  padding: 1.5rem 0;
   height: 160px;
   display: flex;
   justify-content: center;

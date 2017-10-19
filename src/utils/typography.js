@@ -1,12 +1,23 @@
-import Typography from "typography"
+import Typography from "typography";
 
 const typOptions = {
-  baseFontSize: '18px',
+  baseFontSize: "20px",
   baseLineHeight: 1.45,
-  headerFontFamily: ['Merriweather', 'serif'],
-  bodyFontFamily: ['OpenSans', 'sans-serif'],
+  googleFonts: [
+    {
+      name: "OpenSans",
+      styles: ["300", "400", "700"]
+    },
+    {
+      name: "Merriweather",
+      styles: ["300", "400"]
+    }
+  ],
+  headerFontFamily: ["Merriweather", "serif"],
+  headerWeight: 300,
+  bodyFontFamily: ["OpenSans", "sans-serif"]
 };
 
-const typography = new Typography(typOptions)
+const typography = new Typography(typOptions);
 
-export default typography
+export default typography;
