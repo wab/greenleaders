@@ -6,16 +6,14 @@ class CategoryTemplate extends Component {
   // getInitialState
   state = {
     subCategory: null,
-    posts: this.props.data.allContentfulArticle.edges
+    posts: this.props.data.contentfulCategorie.article
   };
 
   filterPosts = categoryId => {
-    const allPosts = this.props.data.allContentfulArticle.edges;
+    const allPosts = this.props.data.contentfulCategorie.article;
 
     const filteredPosts = categoryId
-      ? _.filter(allPosts, ({ node: post }) =>
-          _.some(post.categories, { id: categoryId })
-        )
+      ? _.filter(allPosts, post => _.some(post.tag, { id: categoryId }))
       : allPosts;
 
     this.setState({
@@ -25,24 +23,24 @@ class CategoryTemplate extends Component {
 
   loadAllPosts = () => {
     this.setState({
-      posts: this.props.data.allContentfulArticle.edges
+      posts: this.props.data.contentfulCategorie.article
     });
   };
 
   render() {
-    const { title, subcategories } = this.props.data.contentfulCategorie;
+    const { title, menu } = this.props.data.contentfulCategorie;
     const posts = this.state.posts;
 
     return (
       <div>
         <Link to="/">&larr; Retour</Link>
         <h1>{title}</h1>
-        {subcategories && (
+        {menu && (
           <ul className="submenu">
             <li>
               <button onClick={() => this.filterPosts()}>Tous</button>
             </li>
-            {subcategories.map((category, index) => (
+            {menu.map((category, index) => (
               <li key={index}>
                 <button href="#" onClick={() => this.filterPosts(category.id)}>
                   {category.title}
@@ -52,9 +50,9 @@ class CategoryTemplate extends Component {
           </ul>
         )}
         <h2>Les articles</h2>
-        {posts && (
+        {posts && posts.length ? (
           <ul>
-            {posts.map(({ node: post }, index) => (
+            {posts.map((post, index) => (
               <li key={index}>
                 <Link to={`/article/${post.slug}`} activeClassName="active">
                   {post.title}
@@ -62,6 +60,8 @@ class CategoryTemplate extends Component {
               </li>
             ))}
           </ul>
+        ) : (
+          <p>Il n'y a pas encore d'articles dans cette catégorie !</p>
         )}
       </div>
     );
@@ -79,17 +79,15 @@ export const query = graphql`
         slug
         title
       }
-    }
-    allContentfulArticle {
-      edges {
-        node {
+      article {
+        updatedAt
+        createdAt
+        slug
+        title
+        tag {
+          id
           slug
           title
-          rubrique {
-            id
-            slug
-            title
-          }
         }
       }
     }
