@@ -7,6 +7,12 @@ import Header from "../components/Header";
 import Navigation from "../components/Navigation";
 import Container from "../components/Container";
 import Footer from "../components/Footer";
+import { Page, Row, Column } from "hedron";
+import Thumbnail from "../components/Thumbnail";
+import PostExcerpt from "../components/PostExcerpt";
+import colors, { rubriqueColor } from "../utils/colors";
+import globals from "../utils/globals";
+import { noBullet, rowMargin, position } from "../utils/mixins";
 
 class TemplateWrapper extends Component {
   render() {
