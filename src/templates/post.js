@@ -9,7 +9,7 @@ import PostExcerpt from "../components/PostExcerpt";
 import styled, { css, ThemeProvider } from "styled-components";
 import colors, { rubriqueColor } from "../utils/colors";
 import globals from "../utils/globals";
-import { noBullet, rowMargin, position } from "../utils/mixins";
+import { noBullet, rowMargin, position, link } from "../utils/mixins";
 
 import mascotte from "../assets/images/mascotte.png";
 
@@ -119,6 +119,10 @@ const Summary = styled.section`
     line-height: 1.5;
   }
 
+  a {
+    ${link};
+  }
+
   ${includeListStyle};
 `;
 
@@ -129,6 +133,10 @@ const Main = styled.main`
   }
 
   ${includeListStyle};
+
+  a {
+    ${link};
+  }
 
   ol {
     ${noBullet(0)};
@@ -216,7 +224,8 @@ const PostTemplate = ({ data }) => {
     thumbAlt,
     summary,
     main,
-    speech
+    speech,
+    moreInfoUrl
   } = data.contentfulArticle;
 
   const onTheme = _.filter(rubrique.article, post => post.id !== id);
@@ -248,6 +257,7 @@ const PostTemplate = ({ data }) => {
                         __html: summary.childMarkdownRemark.html
                       }}
                     />
+                    <a href={moreInfoUrl}>En savoir plus</a>
                   </Summary>
                 )}
               </Column>

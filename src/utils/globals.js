@@ -15,6 +15,10 @@ const globals = {
     medium: "1.5rem",
     large: "2rem",
     xlarge: "5rem"
+  },
+  transition: {
+    duration: "250ms",
+    function: "cubic-bezier(0.8, 0.2, 0.2, 1)"
   }
 };
 
