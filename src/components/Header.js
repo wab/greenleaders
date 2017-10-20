@@ -39,17 +39,17 @@ const MainHeader = styled.header`
 
 const Header = props => {
   return (
-    <MainHeader extended={props.extended}>
-      <h1>
-        <Link to="/">
+    <Link to="/">
+      <MainHeader extended={props.extended}>
+        <h1>
           <img
             src={blockmark}
             alt="GreenLeaders"
             width={props.extended ? "500" : "350"}
           />
-        </Link>
-      </h1>
-    </MainHeader>
+        </h1>
+      </MainHeader>
+    </Link>
   );
 };
 
