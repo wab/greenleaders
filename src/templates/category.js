@@ -5,6 +5,7 @@ import { Page, Row, Column } from "hedron";
 import PostExcerpt from "../components/PostExcerpt";
 import Breadcrumb from "../components/Breadcrumb";
 import HiddenTitle from "../components/HiddenTitle";
+import QuestionForm from "../components/QuestionForm";
 import styled, { css, ThemeProvider } from "styled-components";
 import colors, { rubriqueColor } from "../utils/colors";
 import globals from "../utils/globals";
@@ -113,6 +114,11 @@ class CategoryTemplate extends Component {
                     )}
                   </Row>
                 </RowWrapper>
+              </Column>
+            </Row>
+            <Row divisions={12}>
+              <Column lg={8} lgShift={2} md={10} mdShift={1}>
+                <QuestionForm />
               </Column>
             </Row>
           </Page>

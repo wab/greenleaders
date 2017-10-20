@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="36" height="32" viewBox="0 0 36 32">
+  <g fill="none" fill-rule="evenodd" transform="translate(-1)">
+    <rect width="32" height="32" x="5" fill="#FFF" rx="16"/>
+    <text fill="#2F2F30" font-family="OpenSans-Bold, Open Sans" font-size="20" font-weight="bold">
+      <tspan x="16.229" y="24">?</tspan>
+    </text>
+    <polygon fill="#FFF" points="4.781 21.281 8.281 28.281 1.281 28.281" transform="rotate(-120 4.781 24.781)"/>
+  </g>
+</svg>

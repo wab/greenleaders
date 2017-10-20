@@ -5,7 +5,8 @@ import Link from "gatsby-link";
 import { Page, Row, Column } from "hedron";
 import Thumbnail from "../components/Thumbnail";
 import Breadcrumb from "../components/Breadcrumb";
-import PostExcerpt from "../components/PostExcerpt";
+import SectionTitle from "../components/SectionTitle";
+import QuestionForm from "../components/QuestionForm";
 import styled, { css, ThemeProvider } from "styled-components";
 import colors, { rubriqueColor } from "../utils/colors";
 import globals from "../utils/globals";
@@ -30,23 +31,6 @@ const ArticleHeader = styled.header`
     color: ${colors.grey.base};
     font-size: ${globals.sizes.medium};
     line-height: 1.2em;
-  }
-`;
-
-const SectionTitle = styled.div`
-  color: ${rubriqueColor};
-  font-size: ${globals.sizes.small};
-  font-weight: bold;
-  text-transform: uppercase;
-  margin-bottom: ${globals.sizes.small};
-
-  &:after {
-    content: "";
-    display: block;
-    width: 80px;
-    height: 1px;
-    margin-top: ${globals.sizes.small};
-    background-color: currentColor;
   }
 `;
 
@@ -290,6 +274,8 @@ const PostTemplate = ({ data }) => {
                     />
                   </Speech>
                 )}
+
+                <QuestionForm light />
 
                 {onTheme.length > 0 && (
                   <aside>

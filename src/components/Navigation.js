@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "gatsby-link";
-import Container from "../components/Container";
 import styled from "styled-components";
 import styledMap from "styled-map";
 import colors from "../utils/colors";
@@ -82,7 +81,7 @@ const Navigation = ({ data }) => {
           </Link>
         </Item>
         <Item secondary>
-          <a href="#">e-learning</a>
+          <a href="https://elearning-yvesrocher.elmg.net">e-learning</a>
         </Item>
       </ul>
     </MainNavigation>

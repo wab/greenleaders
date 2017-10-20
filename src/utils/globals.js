@@ -6,7 +6,8 @@ const globals = {
   spaces: {
     xsmall: "0.5rem",
     small: "1rem",
-    base: "1.5rem"
+    base: "1.5rem",
+    large: "4rem"
   },
   sizes: {
     xsmall: "0.6rem",
