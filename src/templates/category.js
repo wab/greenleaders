@@ -4,15 +4,11 @@ import _ from "lodash";
 import { Page, Row, Column } from "hedron";
 import PostExcerpt from "../components/PostExcerpt";
 import Breadcrumb from "../components/Breadcrumb";
+import HiddenTitle from "../components/HiddenTitle";
 import styled, { css, ThemeProvider } from "styled-components";
 import colors, { rubriqueColor } from "../utils/colors";
 import globals from "../utils/globals";
-import {
-  noBullet,
-  rowMargin,
-  position,
-  elementInvisible
-} from "../utils/mixins";
+import { noBullet, rowMargin, position } from "../utils/mixins";
 
 const RowWrapper = styled.div`
   ${rowMargin};
@@ -41,10 +37,6 @@ const SubmenuStyle = styled.nav`
     width: 100%;
     cursor: pointer;
   }
-`;
-
-const HiddenTitle = styled.h1`
-  ${elementInvisible};
 `;
 
 const SubMenu = ({ children }) => <SubmenuStyle>{children}</SubmenuStyle>;
