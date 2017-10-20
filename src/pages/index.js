@@ -1,7 +1,9 @@
 import React from "react";
 import Link from "gatsby-link";
+import moment from "moment";
 import { Page, Row, Column } from "hedron";
 import PostExcerpt from "../components/PostExcerpt";
+import BlockLink from "../components/BlockLink";
 import styled, { css, ThemeProvider } from "styled-components";
 import colors, { rubriqueColor } from "../utils/colors";
 import globals from "../utils/globals";
@@ -14,9 +16,40 @@ const Accueil = styled.div`
 const RowWrapper = styled.div`
   ${rowMargin};
 `;
+const PostList = styled.ol`
+  ${noBullet(0)};
+`;
+const PostItemTitle = styled.h3`
+  color: ${colors.grey.dark};
+  font-size: ${globals.sizes.small};
+  line-height: 1.4;
+  margin-bottom: 0.2rem;
+`;
+const Date = styled.div`
+  color: ${colors.grey.light};
+  text-transform: uppercase;
+  font-size: ${globals.sizes.xsmall};
+`;
+
+const StyledPostItem = styled.article`
+  padding-bottom: ${globals.sizes.small};
+  margin-bottom: ${globals.sizes.small};
+  border-bottom: 1px solid ${colors.grey.light};
+`;
+
+const PostItem = ({ post }) => (
+  <BlockLink to={`/article/${post.slug}`}>
+    <StyledPostItem>
+      <PostItemTitle>{post.title}</PostItemTitle>
+      <Date>{moment(post.createdAt).format("ll")}</Date>
+    </StyledPostItem>
+  </BlockLink>
+);
 
 const IndexPage = ({ data }) => {
   const posts = data.allContentfulArticle.edges;
+  const focusedPosts = posts.filter((post, i) => i <= 3);
+  const otherPosts = posts.filter((post, i) => i > 3);
   return (
     <Accueil>
       {posts && (
@@ -25,7 +58,7 @@ const IndexPage = ({ data }) => {
             <Column md={16} lgShift={1}>
               <RowWrapper>
                 <Row divisions={16}>
-                  {posts.map(({ node: post }, index) => (
+                  {focusedPosts.map(({ node: post }, index) => (
                     <Column lg={7} md={8} lgShift={1} key={index}>
                       <PostExcerpt post={post} />
                     </Column>
@@ -33,7 +66,19 @@ const IndexPage = ({ data }) => {
                 </Row>
               </RowWrapper>
             </Column>
-            <Column lg={4} md={8} lgShift={1} />
+            <Column lg={4} md={8} lgShift={1}>
+              {otherPosts.length > 0 ? (
+                <PostList>
+                  {otherPosts.map(({ node: post }, index) => (
+                    <li key={index}>
+                      <PostItem post={post} />
+                    </li>
+                  ))}
+                </PostList>
+              ) : (
+                <p>Pas d'autre articles pour le moment !</p>
+              )}
+            </Column>
           </Row>
         </Page>
       )}
