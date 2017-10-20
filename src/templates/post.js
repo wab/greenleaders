@@ -6,6 +6,7 @@ import { Page, Row, Column } from "hedron";
 import Thumbnail from "../components/Thumbnail";
 import Breadcrumb from "../components/Breadcrumb";
 import SectionTitle from "../components/SectionTitle";
+import PostExcerpt from "../components/PostExcerpt";
 import QuestionForm from "../components/QuestionForm";
 import styled, { css, ThemeProvider } from "styled-components";
 import colors, { rubriqueColor } from "../utils/colors";
