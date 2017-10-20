@@ -49,7 +49,7 @@ const PostItem = ({ post }) => (
 const IndexPage = ({ data }) => {
   const posts = data.allContentfulArticle.edges;
   const focusedPosts = posts.filter((post, i) => i <= 3);
-  const otherPosts = posts.filter((post, i) => i > 3);
+  const otherPosts = posts.filter((post, i) => i > -1);
   return (
     <Accueil>
       {posts && (

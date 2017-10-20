@@ -82,7 +82,7 @@ const Navigation = ({ data }) => {
           </Link>
         </Item>
         <Item secondary>
-          <a href="#">e-learning</a>
+          <a href="https://elearning-yvesrocher.elmg.net">e-learning</a>
         </Item>
       </ul>
     </MainNavigation>
