@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Link from "gatsby-link";
 import _ from "lodash";
+import moment from "moment";
 import { Page, Row, Column } from "hedron";
 import PostExcerpt from "../components/PostExcerpt";
 import Breadcrumb from "../components/Breadcrumb";
@@ -10,6 +11,7 @@ import styled, { css, ThemeProvider } from "styled-components";
 import colors, { rubriqueColor } from "../utils/colors";
 import globals from "../utils/globals";
 import { noBullet, rowMargin, position } from "../utils/mixins";
+moment.locale("fr");
 
 const RowWrapper = styled.div`
   ${rowMargin};

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import moment from "moment";
 import Link from "gatsby-link";
 import Helmet from "react-helmet";
 import styled from "styled-components";
@@ -14,7 +13,6 @@ import PostExcerpt from "../components/PostExcerpt";
 import colors, { rubriqueColor } from "../utils/colors";
 import globals from "../utils/globals";
 import { noBullet, rowMargin, position } from "../utils/mixins";
-moment.locale("fr");
 
 class TemplateWrapper extends Component {
   render() {

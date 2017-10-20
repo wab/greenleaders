@@ -4,6 +4,7 @@ import { Page, Row, Column } from "hedron";
 import styled from "styled-components";
 import HiddenTitle from "../components/HiddenTitle";
 import colors from "../utils/colors";
+import { link } from "../utils/mixins";
 
 const Question = styled.h2`
   color: ${colors.primary};
@@ -17,6 +18,10 @@ const StyledFaq = styled.section`
 
   &:last-child {
     border: none;
+  }
+
+  a {
+    ${link};
   }
 `;
 

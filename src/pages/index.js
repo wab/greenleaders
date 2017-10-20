@@ -9,6 +9,7 @@ import styled, { css, ThemeProvider } from "styled-components";
 import colors, { rubriqueColor } from "../utils/colors";
 import globals from "../utils/globals";
 import { noBullet, rowMargin, position } from "../utils/mixins";
+moment.locale("fr");
 
 const Accueil = styled.div`
   padding: ${globals.sizes.large} 0;
