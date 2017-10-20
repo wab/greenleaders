@@ -12,6 +12,7 @@ import styled, { css, ThemeProvider } from "styled-components";
 import colors, { rubriqueColor } from "../utils/colors";
 import globals from "../utils/globals";
 import { noBullet, rowMargin, position, link } from "../utils/mixins";
+moment.locale("fr");
 
 import mascotte from "../assets/images/mascotte.png";
 
@@ -198,6 +199,10 @@ const NavigationItem = styled.div`
   }
 `;
 
+const Aside = styled.aside`
+  margin-top: ${globals.spaces.large};
+`;
+
 const PostTemplate = ({ data }) => {
   const {
     createdAt,
@@ -279,7 +284,7 @@ const PostTemplate = ({ data }) => {
                 <QuestionForm light />
 
                 {onTheme.length > 0 && (
-                  <aside>
+                  <Aside>
                     <SectionTitle>Sur le même thème</SectionTitle>
                     <RowWrapper>
                       <Row divisions={2}>
@@ -292,7 +297,7 @@ const PostTemplate = ({ data }) => {
                         })}
                       </Row>
                     </RowWrapper>
-                  </aside>
+                  </Aside>
                 )}
               </Column>
             </Row>
