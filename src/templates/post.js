@@ -13,8 +13,6 @@ import { noBullet, rowMargin, position } from "../utils/mixins";
 
 import mascotte from "../assets/images/mascotte.png";
 
-moment.locale("fr");
-
 const ArticleHeader = styled.header`
   margin-bottom: 65px;
   time {
@@ -374,6 +372,12 @@ export const query = graphql`
         article {
           slug
           title
+          tag {
+            title
+            categorie {
+              slug
+            }
+          }
           thumbnail {
             responsiveResolution(width: 400, height: 400) {
               width
