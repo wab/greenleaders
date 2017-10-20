@@ -33,12 +33,7 @@ const IndexPage = ({ data }) => {
                 </Row>
               </RowWrapper>
             </Column>
-            <Column lg={4} md={8} lgShift={1}>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor
-              corporis, non dolores ipsum necessitatibus hic sunt quisquam
-              architecto optio facere delectus pariatur quae quidem, adipisci
-              fugiat, odio sed iure. Non?
-            </Column>
+            <Column lg={4} md={8} lgShift={1} />
           </Row>
         </Page>
       )}
@@ -66,6 +61,12 @@ export const query = graphql`
             }
           }
           thumbAlt
+          tag {
+            title
+            categorie {
+              slug
+            }
+          }
         }
       }
     }

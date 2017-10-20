@@ -151,6 +151,9 @@ export const query = graphql`
           id
           slug
           title
+          categorie {
+            slug
+          }
         }
         thumbnail {
           description
