@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "gatsby-link";
-import Container from "../components/Container";
 import styled from "styled-components";
 import styledMap from "styled-map";
 import colors from "../utils/colors";

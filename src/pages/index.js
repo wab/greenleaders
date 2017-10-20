@@ -4,6 +4,7 @@ import moment from "moment";
 import { Page, Row, Column } from "hedron";
 import PostExcerpt from "../components/PostExcerpt";
 import BlockLink from "../components/BlockLink";
+import QuestionForm from "../components/QuestionForm";
 import styled, { css, ThemeProvider } from "styled-components";
 import colors, { rubriqueColor } from "../utils/colors";
 import globals from "../utils/globals";
@@ -51,38 +52,45 @@ const IndexPage = ({ data }) => {
   const focusedPosts = posts.filter((post, i) => i <= 3);
   const otherPosts = posts.filter((post, i) => i > -1);
   return (
-    <Accueil>
-      {posts && (
-        <Page fluid>
-          <Row divisions={24}>
-            <Column md={16} lgShift={1}>
-              <RowWrapper>
-                <Row divisions={16}>
-                  {focusedPosts.map(({ node: post }, index) => (
-                    <Column lg={7} md={8} lgShift={1} key={index}>
-                      <PostExcerpt post={post} />
-                    </Column>
-                  ))}
-                </Row>
-              </RowWrapper>
-            </Column>
-            <Column lg={4} md={8} lgShift={1}>
-              {otherPosts.length > 0 ? (
-                <PostList>
-                  {otherPosts.map(({ node: post }, index) => (
-                    <li key={index}>
-                      <PostItem post={post} />
-                    </li>
-                  ))}
-                </PostList>
-              ) : (
-                <p>Pas d'autre articles pour le moment !</p>
-              )}
-            </Column>
-          </Row>
-        </Page>
-      )}
-    </Accueil>
+    <ThemeProvider theme={{ rubrique: "home" }}>
+      <Accueil>
+        {posts && (
+          <Page fluid>
+            <Row divisions={24}>
+              <Column md={16} lgShift={1}>
+                <RowWrapper>
+                  <Row divisions={16}>
+                    {focusedPosts.map(({ node: post }, index) => (
+                      <Column lg={7} md={8} lgShift={1} key={index}>
+                        <PostExcerpt post={post} />
+                      </Column>
+                    ))}
+                  </Row>
+                </RowWrapper>
+              </Column>
+              <Column lg={4} md={8} lgShift={1}>
+                {otherPosts.length > 0 ? (
+                  <PostList>
+                    {otherPosts.map(({ node: post }, index) => (
+                      <li key={index}>
+                        <PostItem post={post} />
+                      </li>
+                    ))}
+                  </PostList>
+                ) : (
+                  <p>Pas d'autre articles pour le moment !</p>
+                )}
+              </Column>
+            </Row>
+            <Row divisions={12}>
+              <Column lg={8} lgShift={2} md={10} mdShift={1}>
+                <QuestionForm />
+              </Column>
+            </Row>
+          </Page>
+        )}
+      </Accueil>
+    </ThemeProvider>
   );
 };
 
