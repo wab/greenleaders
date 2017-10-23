@@ -11,6 +11,7 @@ import styled, { css, ThemeProvider } from "styled-components";
 import colors, { rubriqueColor } from "../utils/colors";
 import globals from "../utils/globals";
 import { noBullet, rowMargin, position } from "../utils/mixins";
+import "url-search-params-polyfill";
 import "moment/locale/fr";
 moment.locale("fr");
 
