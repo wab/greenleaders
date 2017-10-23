@@ -47,15 +47,15 @@ const SubMenu = ({ children }) => <SubmenuStyle>{children}</SubmenuStyle>;
 class CategoryTemplate extends Component {
   // getInitialState
   state = {
-    subCategory: null,
-    posts: this.props.data.contentfulCategorie.article
+    tag: this.props.location.search,
+    posts: []
   };
 
-  filterPosts = categoryId => {
+  filterPosts = categorySlug => {
     const allPosts = this.props.data.contentfulCategorie.article;
 
-    const filteredPosts = categoryId
-      ? _.filter(allPosts, post => _.some(post.tag, { id: categoryId }))
+    const filteredPosts = categorySlug
+      ? _.filter(allPosts, post => _.some(post.tag, { slug: categorySlug }))
       : allPosts;
 
     this.setState({
@@ -63,11 +63,11 @@ class CategoryTemplate extends Component {
     });
   };
 
-  loadAllPosts = () => {
-    this.setState({
-      posts: this.props.data.contentfulCategorie.article
-    });
-  };
+  componentWillMount() {
+    const urlParams = new URLSearchParams(this.props.location.search);
+    const query = urlParams.get("tag");
+    this.filterPosts(query);
+  }
 
   render() {
     const { title, menu, slug } = this.props.data.contentfulCategorie;
@@ -89,7 +89,9 @@ class CategoryTemplate extends Component {
                       </li>
                       {menu.map((category, index) => (
                         <li key={index}>
-                          <button onClick={() => this.filterPosts(category.id)}>
+                          <button
+                            onClick={() => this.filterPosts(category.slug)}
+                          >
                             {category.title}
                           </button>
                         </li>

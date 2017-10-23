@@ -28,7 +28,7 @@ class TemplateWrapper extends Component {
         <Header extended={isHeaderExtended} />
         <Navigation data={this.props.data} />
         <main>{this.props.children()}</main>
-        <Footer />
+        <Footer data={this.props.data} />
       </div>
     );
   }
@@ -45,9 +45,15 @@ export const query = graphql`
     allContentfulCategorie(sort: { fields: [order] }) {
       edges {
         node {
+          id
           title
           order
           slug
+          menu {
+            id
+            slug
+            title
+          }
         }
       }
     }

@@ -74,7 +74,7 @@ class Navigation extends Component {
         <ul>
           {!!rubriques &&
             rubriques.map(({ node: rubrique }, index) => (
-              <Item key={index} rubrique={rubrique.slug}>
+              <Item key={rubrique.id} rubrique={rubrique.slug}>
                 <NavLink to={`/${rubrique.slug}`} activeClassName="active">
                   {rubrique.title}
                 </NavLink>

@@ -31,7 +31,8 @@ const PostExcerpt = ({ post }) => {
           )}
           <ExcerptTitle>{post.title}</ExcerptTitle>
           <ExcerptMeta>
-            {category} - Le {moment(post.createdAt).format("ll")}
+            <strong>{category}</strong> - Le{" "}
+            {moment(post.createdAt).format("ll")}
           </ExcerptMeta>
         </article>
       </BlockLink>
