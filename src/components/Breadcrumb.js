@@ -3,11 +3,7 @@ import Link from "gatsby-link";
 import { Page, Row, Column } from "hedron";
 import styled from "styled-components";
 import globals from "../utils/globals";
-
-const Icon = styled.svg`
-  display: inline-block;
-  vertical-align: middle;
-`;
+import Icon from "./Icon";
 
 const StyledLink = styled(Link)`
   color: inherit;
@@ -17,13 +13,12 @@ const StyledLink = styled(Link)`
     display: inline-block;
     margin: 0 ${globals.sizes.base};
   }
-`;
 
-const Chevron = () => (
-  <Icon height="21" width="11" viewBox="0 0 11 21">
-    <polyline fill="none" points="11 1 0 10.5 11 20" stroke="#2F2F30" />
-  </Icon>
-);
+  .icon {
+    display: inline-block;
+    vertical-align: middle;
+  }
+`;
 
 const Breadcrumb = () => (
   <nav>
@@ -31,7 +26,7 @@ const Breadcrumb = () => (
       <Row divisions={12}>
         <Column lg={10} lgShift={1} md={12}>
           <StyledLink to="/">
-            <Chevron />
+            <Icon icon="chevron" />
             <span>Retour</span>
           </StyledLink>
         </Column>

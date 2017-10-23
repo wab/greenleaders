@@ -12,6 +12,12 @@ const Button = styled.button`
   cursor: pointer;
   font-size: ${globals.sizes.small};
   font-weight: bold;
+
+  svg {
+    display: inline-block;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+  }
 `;
 
 export default Button;

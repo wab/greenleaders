@@ -40,7 +40,7 @@ const StyledPostItem = styled.article`
 `;
 
 const PostItem = ({ post }) => (
-  <BlockLink to={`/article/${post.slug}`}>
+  <BlockLink to={`/${post.rubrique.slug}/${post.slug}`}>
     <StyledPostItem>
       <PostItemTitle>{post.title}</PostItemTitle>
       <Date>{moment(post.createdAt).format("ll")}</Date>
@@ -115,6 +115,9 @@ export const query = graphql`
             }
           }
           thumbAlt
+          rubrique {
+            slug
+          }
           tag {
             title
             categorie {
