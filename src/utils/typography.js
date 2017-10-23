@@ -5,7 +5,7 @@ const typOptions = {
   baseLineHeight: 1.45,
   googleFonts: [
     {
-      name: "OpenSans",
+      name: "Open+Sans",
       styles: ["300", "400", "700"]
     },
     {
@@ -15,7 +15,7 @@ const typOptions = {
   ],
   headerFontFamily: ["Merriweather", "serif"],
   headerWeight: 300,
-  bodyFontFamily: ["OpenSans", "sans-serif"]
+  bodyFontFamily: ["Open Sans", "sans-serif"]
 };
 
 const typography = new Typography(typOptions);

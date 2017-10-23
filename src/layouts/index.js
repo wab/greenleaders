@@ -5,7 +5,6 @@ import Helmet from "react-helmet";
 import styled from "styled-components";
 import Header from "../components/Header";
 import Navigation from "../components/Navigation";
-import Container from "../components/Container";
 import Footer from "../components/Footer";
 import { Page, Row, Column } from "hedron";
 import Thumbnail from "../components/Thumbnail";
@@ -29,7 +28,7 @@ class TemplateWrapper extends Component {
         <Header extended={isHeaderExtended} />
         <Navigation data={this.props.data} />
         <main>{this.props.children()}</main>
-        <Footer />
+        <Footer data={this.props.data} />
       </div>
     );
   }
@@ -46,9 +45,15 @@ export const query = graphql`
     allContentfulCategorie(sort: { fields: [order] }) {
       edges {
         node {
+          id
           title
           order
           slug
+          menu {
+            id
+            slug
+            title
+          }
         }
       }
     }

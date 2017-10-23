@@ -6,6 +6,8 @@ import BlockLink from "./BlockLink";
 import styled, { ThemeProvider } from "styled-components";
 import colors, { rubriqueColor } from "../utils/colors";
 import globals from "../utils/globals";
+import "moment/locale/fr";
+moment.locale("fr");
 
 const ExcerptTitle = styled.h2`
   font-size: ${globals.sizes.base};
@@ -22,7 +24,7 @@ const PostExcerpt = ({ post }) => {
   const category = !!post.tag ? post.tag[0].title : "";
   return (
     <ThemeProvider theme={{ rubrique: rubriqueSlug }}>
-      <BlockLink to={`/article/${post.slug}`}>
+      <BlockLink to={`/${rubriqueSlug}/${post.slug}`}>
         <article>
           {post.thumbnail ? (
             <Thumbnail img={post.thumbnail.responsiveResolution} />
@@ -31,7 +33,8 @@ const PostExcerpt = ({ post }) => {
           )}
           <ExcerptTitle>{post.title}</ExcerptTitle>
           <ExcerptMeta>
-            {category} - Le {moment(post.createdAt).format("ll")}
+            <strong>{category}</strong> - Le{" "}
+            {moment(post.createdAt).format("ll")}
           </ExcerptMeta>
         </article>
       </BlockLink>

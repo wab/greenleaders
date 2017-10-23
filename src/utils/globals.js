@@ -1,6 +1,6 @@
 const globals = {
   fonts: {
-    default: "OpenSans, sans-serif",
+    default: "Open Sans",
     alt: "Merriweather, serif"
   },
   spaces: {

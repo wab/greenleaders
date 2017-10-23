@@ -3,6 +3,7 @@ import Link from "gatsby-link";
 import { Page, Row, Column } from "hedron";
 import styled from "styled-components";
 import HiddenTitle from "../components/HiddenTitle";
+import PageContainer from "../components/PageContainer";
 import colors from "../utils/colors";
 import { link } from "../utils/mixins";
 
@@ -38,14 +39,10 @@ const Faq = ({ faq }) => (
 const FaqPage = ({ data }) => {
   const faqs = data.allContentfulFaq.edges;
   return (
-    <Page fluid>
+    <PageContainer>
       <HiddenTitle>Les questions fréquemment posées</HiddenTitle>
-      <Row divisions={12}>
-        <Column lg={8} lgShift={2} md={10} mdShift={1}>
-          {faqs.map(({ node: faq }, index) => <Faq key={index} faq={faq} />)}
-        </Column>
-      </Row>
-    </Page>
+      {faqs.map(({ node: faq }, index) => <Faq key={index} faq={faq} />)}
+    </PageContainer>
   );
 };
 

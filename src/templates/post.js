@@ -8,10 +8,12 @@ import Breadcrumb from "../components/Breadcrumb";
 import SectionTitle from "../components/SectionTitle";
 import PostExcerpt from "../components/PostExcerpt";
 import QuestionForm from "../components/QuestionForm";
+import Icon from "../components/Icon";
 import styled, { css, ThemeProvider } from "styled-components";
 import colors, { rubriqueColor } from "../utils/colors";
 import globals from "../utils/globals";
 import { noBullet, rowMargin, position, link } from "../utils/mixins";
+import "moment/locale/fr";
 moment.locale("fr");
 
 import mascotte from "../assets/images/mascotte.png";
@@ -38,13 +40,15 @@ const ArticleHeader = styled.header`
 
 const Speech = styled.div`
   position: relative;
-  &:after {
-    display: block;
-    content: "";
-    width: 113px;
-    height: 181px;
-    background-image: url(${mascotte});
-    ${position(0, "-150px")};
+  @media (min-width: 1024px) {
+    &:after {
+      display: block;
+      content: "";
+      width: 113px;
+      height: 181px;
+      background-image: url(${mascotte});
+      ${position(0, "-150px")};
+    }
   }
 `;
 
@@ -127,13 +131,14 @@ const Main = styled.main`
   ol {
     ${noBullet(0)};
     li {
-      padding-top: 4rem;
+      padding-top: 3.5rem;
       position: relative;
 
       strong {
         color: ${rubriqueColor};
         display: block;
-        font-weight: normal;
+        font-weight: 400;
+        text-transform: uppercase;
       }
 
       &:before {
@@ -141,7 +146,7 @@ const Main = styled.main`
         display: block;
         line-height: 1;
         font-size: ${globals.sizes.xlarge};
-        font-family: OpenSans;
+        font-family: ${globals.fonts.default};
         font-weight: 300;
         opacity: 0.2;
         position: absolute;
@@ -184,6 +189,7 @@ const Navigation = styled.nav`
 
 const NavigationItem = styled.div`
   text-align: ${props => (props.next ? "right" : "left")};
+  position: relative;
 
   a {
     color: inherit;
@@ -195,6 +201,18 @@ const NavigationItem = styled.div`
       display: block;
       font-family: ${globals.fonts.default};
       font-weight: bold;
+    }
+
+    .icon {
+      ${props =>
+        props.next
+          ? css`
+              transform: rotate(180deg);
+              ${position("5px", "-32px", "auto", "auto")};
+            `
+          : css`
+              ${position("5px", "auto", "auto", "-32px")};
+            `};
     }
   }
 `;
@@ -307,7 +325,11 @@ const PostTemplate = ({ data }) => {
                 <Column lg={9} lgShift={3} md={11} mdShift={1}>
                   {postIndex.previous && (
                     <NavigationItem>
-                      <Link to={`/article/${postIndex.previous.slug}`}>
+                      <Link
+                        to={`/${postIndex.previous.rubrique.slug}/${postIndex
+                          .previous.slug}`}
+                      >
+                        <Icon icon="chevron" />
                         <span>Article Précédent :</span>
                         {postIndex.previous.title}
                       </Link>
@@ -317,7 +339,11 @@ const PostTemplate = ({ data }) => {
                 <Column lg={9} md={11}>
                   {postIndex.next && (
                     <NavigationItem next>
-                      <Link to={`/article/${postIndex.next.slug}`}>
+                      <Link
+                        to={`/${postIndex.next.rubrique.slug}/${postIndex.next
+                          .slug}`}
+                      >
+                        <Icon icon="chevron" />
                         <span>Article Suivant :</span>
                         {postIndex.next.title}
                       </Link>
@@ -397,6 +423,9 @@ export const query = graphql`
           slug
           title
           subtitle
+          rubrique {
+            slug
+          }
         }
         node {
           id
@@ -405,6 +434,9 @@ export const query = graphql`
           slug
           title
           subtitle
+          rubrique {
+            slug
+          }
         }
       }
     }
