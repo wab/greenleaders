@@ -6,6 +6,8 @@ import BlockLink from "./BlockLink";
 import styled, { ThemeProvider } from "styled-components";
 import colors, { rubriqueColor } from "../utils/colors";
 import globals from "../utils/globals";
+import "moment/locale/fr";
+moment.locale("fr");
 
 const ExcerptTitle = styled.h2`
   font-size: ${globals.sizes.base};

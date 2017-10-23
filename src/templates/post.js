@@ -12,6 +12,7 @@ import styled, { css, ThemeProvider } from "styled-components";
 import colors, { rubriqueColor } from "../utils/colors";
 import globals from "../utils/globals";
 import { noBullet, rowMargin, position, link } from "../utils/mixins";
+import "moment/locale/fr";
 moment.locale("fr");
 
 import mascotte from "../assets/images/mascotte.png";
