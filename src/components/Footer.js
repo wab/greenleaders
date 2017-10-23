@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "gatsby-link";
-import Container from "../components/Container";
 import styled from "styled-components";
 import logo from "../assets/svg/logo-footer.svg";
 
