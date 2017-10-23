@@ -19,16 +19,18 @@
     "moment": "^2.19.1",
     "styled-components": "^2.2.1",
     "styled-map": "^2.0.1",
-    "styled-theming": "^2.2.0"
+    "styled-theming": "^2.2.0",
+    "url-search-params-polyfill": "^2.0.1"
   },
-  "keywords": ["gatsby"],
+  "keywords": [
+    "gatsby"
+  ],
   "license": "MIT",
   "main": "n/a",
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
-    "format":
-      "prettier --trailing-comma es5 --no-semi --single-quote --write 'src/**/*.js'",
+    "format": "prettier --trailing-comma es5 --no-semi --single-quote --write 'src/**/*.js'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
