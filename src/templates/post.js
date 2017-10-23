@@ -39,13 +39,15 @@ const ArticleHeader = styled.header`
 
 const Speech = styled.div`
   position: relative;
-  &:after {
-    display: block;
-    content: "";
-    width: 113px;
-    height: 181px;
-    background-image: url(${mascotte});
-    ${position(0, "-150px")};
+  @media (min-width: 1024px) {
+    &:after {
+      display: block;
+      content: "";
+      width: 113px;
+      height: 181px;
+      background-image: url(${mascotte});
+      ${position(0, "-150px")};
+    }
   }
 `;
 
@@ -128,13 +130,14 @@ const Main = styled.main`
   ol {
     ${noBullet(0)};
     li {
-      padding-top: 4rem;
+      padding-top: 3.5rem;
       position: relative;
 
       strong {
         color: ${rubriqueColor};
         display: block;
-        font-weight: normal;
+        font-weight: 400;
+        text-transform: uppercase;
       }
 
       &:before {
@@ -142,7 +145,7 @@ const Main = styled.main`
         display: block;
         line-height: 1;
         font-size: ${globals.sizes.xlarge};
-        font-family: OpenSans;
+        font-family: ${globals.fonts.default};
         font-weight: 300;
         opacity: 0.2;
         position: absolute;

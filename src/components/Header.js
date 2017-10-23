@@ -23,15 +23,9 @@ const MainHeader = styled.header`
     padding: 0;
     color: white;
 
-    a {
-      display: inline-block;
-      color: inherit;
-      text-decoration: none;
-
-      img {
-        margin-bottom: 0;
-        transition: all 250ms ease-in;
-      }
+    img {
+      margin-bottom: 0;
+      transition: all 250ms ease-in;
     }
   }
 `;
