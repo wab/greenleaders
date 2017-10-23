@@ -22,7 +22,7 @@ const PostExcerpt = ({ post }) => {
   const category = !!post.tag ? post.tag[0].title : "";
   return (
     <ThemeProvider theme={{ rubrique: rubriqueSlug }}>
-      <BlockLink to={`/article/${post.slug}`}>
+      <BlockLink to={`/${rubriqueSlug}/${post.slug}`}>
         <article>
           {post.thumbnail ? (
             <Thumbnail img={post.thumbnail.responsiveResolution} />

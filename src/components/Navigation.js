@@ -1,4 +1,5 @@
-import React from "react";
+import React, { Component } from "react";
+import { NavLink } from "react-router-dom";
 import Link from "gatsby-link";
 import styled from "styled-components";
 import styledMap from "styled-map";
@@ -62,30 +63,35 @@ const Item = styled.li`
   }
 `;
 
-const Navigation = ({ data }) => {
-  const rubriques = data.allContentfulCategorie.edges;
-  return (
-    <MainNavigation>
-      <ul>
-        {!!rubriques &&
-          rubriques.map(({ node: rubrique }, index) => (
-            <Item key={index} rubrique={rubrique.slug}>
-              <Link to={`/categorie/${rubrique.slug}`} activeClassName="active">
-                {rubrique.title}
-              </Link>
-            </Item>
-          ))}
-        <Item secondary>
-          <Link to="/faq" activeClassName="active">
-            FAQ
-          </Link>
-        </Item>
-        <Item secondary>
-          <a href="https://elearning-yvesrocher.elmg.net">e-learning</a>
-        </Item>
-      </ul>
-    </MainNavigation>
-  );
-};
+class Navigation extends Component {
+  isActive = () => {
+    return true;
+  };
+  render() {
+    const rubriques = this.props.data.allContentfulCategorie.edges;
+    return (
+      <MainNavigation>
+        <ul>
+          {!!rubriques &&
+            rubriques.map(({ node: rubrique }, index) => (
+              <Item key={index} rubrique={rubrique.slug}>
+                <NavLink to={`/${rubrique.slug}`} activeClassName="active">
+                  {rubrique.title}
+                </NavLink>
+              </Item>
+            ))}
+          <Item secondary>
+            <Link to="/faq" activeClassName="active">
+              FAQ
+            </Link>
+          </Item>
+          <Item secondary>
+            <a href="https://elearning-yvesrocher.elmg.net">e-learning</a>
+          </Item>
+        </ul>
+      </MainNavigation>
+    );
+  }
+}
 
 export default Navigation;
