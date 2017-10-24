@@ -7,10 +7,13 @@ import Icon from "./Icon";
 import SectionTitle from "./SectionTitle";
 import colors from "../utils/colors";
 import globals from "../utils/globals";
+import { elementInvisible } from "../utils/mixins";
 
 const Field = styled.label`
   display: block;
   margin-bottom: ${globals.spaces.base};
+
+  ${props => props.hidden && elementInvisible};
 `;
 
 const Label = styled.div`
@@ -43,65 +46,47 @@ const Textarea = Input.extend`
 `;
 
 class Form extends Component {
-  state = {
-    prenom: "",
-    nom: "",
-    email: "",
-    magasin: "",
-    message: "",
-    provenance: this.props.title
-  };
-
-  handleInputChange = event => {
-    const value = event.target.value;
-    const name = event.target.name;
-
-    this.setState({
-      [name]: value
-    });
-  };
-
-  handleSubmit = event => {
-    navigateTo("/merci");
-  };
-
   render() {
     return (
-      <form
-        name="question"
-        action="/merci"
-        method="post"
-        data-netlify="true"
-        data-netlify-honeypot="bot-field"
-      >
-        <Field>
-          <Label>Votre prénom</Label>
-          <Input type="text" name="prenom" />
-        </Field>
-        <Field>
-          <Label>Votre nom </Label>
-          <Input type="text" name="nom" />
-        </Field>
-        <Field>
-          <Label>Votre email</Label>
-          <Input required type="email" name="email" />
-        </Field>
-        <Field>
-          <Label>Votre magasin</Label>
-          <Input type="text" name="magasin" />
-        </Field>
-        <Field>
-          <Label>Votre message</Label>
-          <Textarea id="message" name="message" />
-        </Field>
-        <input type="hidden" name="form-name" value="question" />
-        <input type="hidden" name="bot-field" />
-        <input type="hidden" name="provenance" value={this.state.title} />
-        <Button send large type="submit">
-          Envoyer
-          <Icon icon="send" />
-        </Button>
-      </form>
+      <div>
+        <form
+          name="question"
+          action="/merci/"
+          method="post"
+          data-netlify="true"
+          data-netlify-honeypot="bot-field"
+        >
+          <Input type="hidden" name="form-name" value="question" />
+          <Input type="hidden" name="provenance" value={this.props.title} />
+          <Field>
+            <Label>Votre prénom</Label>
+            <Input type="text" name="prenom" />
+          </Field>
+          <Field>
+            <Label>Votre nom </Label>
+            <Input type="text" name="nom" />
+          </Field>
+          <Field>
+            <Label>Votre email</Label>
+            <Input required type="email" name="email" />
+          </Field>
+          <Field>
+            <Label>Votre magasin</Label>
+            <Input type="text" name="magasin" />
+          </Field>
+          <Field>
+            <Label>Votre message</Label>
+            <Textarea id="message" name="message" />
+          </Field>
+          <Field hidden>
+            <Input name="bot-field" />
+          </Field>
+          <Button send large type="submit">
+            Envoyer
+            <Icon icon="send" />
+          </Button>
+        </form>
+      </div>
     );
   }
 }
@@ -112,13 +97,6 @@ const QuestionFormSection = styled.section`
   text-align: center;
 `;
 
-const ButtonWithIcon = props => (
-  <Button large {...props}>
-    Posez une question
-    <Icon icon="questionMark" />
-  </Button>
-);
-
 class QuestionWrapper extends Component {
   renderFull = () => {
     return (
@@ -128,13 +106,21 @@ class QuestionWrapper extends Component {
           Vous avez une interrogation sur les produits ou sur les thématiques
           GreenLeaders ? <br /> N’hésitez pas et posez la !
         </p>
-        <ButtonWithIcon onClick={this.props.onClick} />
+        <Button large onClick={this.props.onClick}>
+          Posez une question
+          <Icon icon="questionMark" />
+        </Button>
       </QuestionFormSection>
     );
   };
 
   renderLight = () => {
-    return <ButtonWithIcon onClick={this.props.onClick} />;
+    return (
+      <Button large onClick={this.props.onClick}>
+        Posez une question
+        <Icon icon="questionMark" />
+      </Button>
+    );
   };
 
   render() {
