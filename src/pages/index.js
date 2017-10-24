@@ -85,7 +85,7 @@ const IndexPage = ({ data }) => {
             </Row>
             <Row divisions={12}>
               <Column lg={8} lgShift={2} md={10} mdShift={1}>
-                <QuestionForm />
+                <QuestionForm title="depuis l'accueil" />
               </Column>
             </Row>
           </Page>

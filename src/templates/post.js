@@ -299,7 +299,7 @@ const PostTemplate = ({ data }) => {
                   </Speech>
                 )}
 
-                <QuestionForm light />
+                <QuestionForm light title={`Depuis l'article "${title}"`} />
 
                 {onTheme.length > 0 && (
                   <Aside>
