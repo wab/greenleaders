@@ -1,11 +1,134 @@
 import React, { Component } from "react";
-import Link from "gatsby-link";
+import Link, { navigateTo } from "gatsby-link";
 import styled from "styled-components";
+import Modal from "./Modal";
 import Button from "./Button";
 import Icon from "./Icon";
 import SectionTitle from "./SectionTitle";
 import colors from "../utils/colors";
 import globals from "../utils/globals";
+
+const Field = styled.label`
+  display: block;
+  margin-bottom: ${globals.spaces.base};
+`;
+
+const Label = styled.div`
+  color: ${colors.white};
+  opacity: 0.5;
+  display: block;
+  font-family: ${globals.fonts.alt};
+  font-weight: 300;
+`;
+
+const Input = styled.input`
+  background-color: rgba(255, 255, 255, 0.1);
+  color: ${colors.white};
+  border: none;
+  outline: 0;
+  padding: ${globals.spaces.xsmall};
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  width: 100%;
+  font-size: ${globals.sizes.medium};
+  transition: border-color ${globals.transition.duration}
+    ${globals.transition.function};
+
+  &:focus {
+    border-bottom-color: rgba(255, 255, 255, 0.8);
+  }
+`;
+
+const Textarea = Input.extend`
+  min-height: 10rem;
+`;
+
+class Form extends Component {
+  state = {
+    prenom: "",
+    nom: "",
+    email: "",
+    magasin: "",
+    message: "",
+    provenance: this.props.title
+  };
+
+  handleInputChange = event => {
+    const value = event.target.value;
+    const name = event.target.name;
+
+    this.setState({
+      [name]: value
+    });
+  };
+
+  handleSubmit = event => {
+    navigateTo("/merci");
+  };
+
+  render() {
+    return (
+      <form
+        name="question"
+        onSubmit={this.handleSubmit}
+        method="post"
+        data-netlify="true"
+        data-netlify-honeypot="bot-field"
+      >
+        <Field>
+          <Label>Votre prénom</Label>
+          <Input
+            type="text"
+            name="prenom"
+            value={this.state.prenom}
+            onChange={this.handleInputChange}
+          />
+        </Field>
+        <Field>
+          <Label>Votre nom </Label>
+          <Input
+            type="text"
+            name="nom"
+            value={this.state.nom}
+            onChange={this.handleInputChange}
+          />
+        </Field>
+        <Field>
+          <Label>Votre email</Label>
+          <Input
+            required
+            type="email"
+            name="email"
+            value={this.state.email}
+            onChange={this.handleInputChange}
+          />
+        </Field>
+        <Field>
+          <Label>Votre magasin</Label>
+          <Input
+            type="text"
+            name="magasin"
+            value={this.state.magasin}
+            onChange={this.handleInputChange}
+          />
+        </Field>
+        <Field>
+          <Label>Votre message</Label>
+          <Textarea
+            id="message"
+            name="message"
+            value={this.state.message}
+            onChange={this.handleInputChange}
+          />
+        </Field>
+        <input type="hidden" name="provenance" value={this.state.title} />
+        <Button send large type="submit">
+          Envoyer
+          <Icon icon="send" />
+        </Button>
+      </form>
+    );
+  }
+}
 
 const QuestionFormSection = styled.section`
   border-top: 1px solid ${colors.grey.light};
@@ -16,21 +139,11 @@ const QuestionFormSection = styled.section`
 const ButtonWithIcon = props => (
   <Button large {...props}>
     Posez une question
-    <Icon icon="questionMark">
-      <path
-        d="M6.85605027,26.1195676 L1.33226763e-15,26.5310889 L3.91952502,20.5946996 C3.48397835,19.1393883 3.25,17.5970184 3.25,16 L3.25,16 L3.25,16 C3.25,7.163444 10.413444,1.623249e-15 19.25,0 L19.25,0 L19.25,0 C28.086556,-1.623249e-15 35.25,7.163444 35.25,16 L35.25,16 C35.25,24.836556 28.086556,32 19.25,32 C14.2525038,32 9.79014327,29.7088119 6.85605027,26.1195676 Z M17.1748047,19.2636719 L19.7626953,19.2636719 L19.7626953,18.6777344 C19.7626953,18.2871074 19.8457023,17.9713554 20.0117188,17.7304688 C20.1777352,17.4895821 20.5732391,17.1380231 21.1982422,16.6757812 C22.1097051,16.0247363 22.7281885,15.4388047 23.0537109,14.9179688 C23.3792334,14.3971328 23.5419922,13.7786494 23.5419922,13.0625 C23.5419922,11.9882759 23.1464883,11.1289095 22.3554688,10.484375 C21.5644492,9.83984053 20.4983791,9.51757812 19.1572266,9.51757812 C17.5296143,9.51757812 15.9899161,9.9244751 14.5380859,10.7382812 L15.6025391,12.8769531 C16.8525453,12.2389291 17.9658154,11.9199219 18.9423828,11.9199219 C19.5022814,11.9199219 19.938475,12.0305979 20.2509766,12.2519531 C20.5634781,12.4733084 20.7197266,12.7955708 20.7197266,13.21875 C20.7197266,13.5963561 20.6106782,13.9381495 20.3925781,14.2441406 C20.1744781,14.5501317 19.7236362,14.9472632 19.0400391,15.4355469 C18.3304001,15.9563828 17.8421237,16.4479144 17.5751953,16.9101562 C17.3082669,17.3723981 17.1748047,17.9160125 17.1748047,18.5410156 L17.1748047,19.2636719 Z M16.8623047,22.6035156 C16.8623047,23.130862 17.0120428,23.5393866 17.3115234,23.8291016 C17.6110041,24.1188166 18.034177,24.2636719 18.5810547,24.2636719 C19.1149115,24.2636719 19.531574,24.1155614 19.8310547,23.8193359 C20.1305354,23.5231105 20.2802734,23.1178411 20.2802734,22.6035156 C20.2802734,22.0696588 20.1321629,21.6595066 19.8359375,21.3730469 C19.5397121,21.0865871 19.121422,20.9433594 18.5810547,20.9433594 C18.0211561,20.9433594 17.594728,21.0833319 17.3017578,21.3632812 C17.0087876,21.6432306 16.8623047,22.0566379 16.8623047,22.6035156 Z"
-        fill="#FFF"
-      />
-    </Icon>
+    <Icon icon="questionMark" />
   </Button>
 );
 
-class QuestionForm extends Component {
-  onClick = () => {
-    const email = "green.leaders@yrnet.com";
-    location.href = "mailto:" + email;
-  };
-
+class QuestionWrapper extends Component {
   renderFull = () => {
     return (
       <QuestionFormSection>
@@ -39,17 +152,41 @@ class QuestionForm extends Component {
           Vous avez une interrogation sur les produits ou sur les thématiques
           GreenLeaders ? <br /> N’hésitez pas et posez la !
         </p>
-        <ButtonWithIcon onClick={this.onClick} />
+        <ButtonWithIcon onClick={this.props.onClick} />
       </QuestionFormSection>
     );
   };
 
   renderLight = () => {
-    return <ButtonWithIcon onClick={this.onClick} />;
+    return <ButtonWithIcon onClick={this.props.onClick} />;
   };
 
   render() {
     return this.props.light ? this.renderLight() : this.renderFull();
+  }
+}
+
+class QuestionForm extends Component {
+  state = {
+    isopen: false
+  };
+  openModal = () => {
+    this.setState({ isopen: true });
+  };
+
+  closeModal = () => {
+    this.setState({ isopen: false });
+  };
+
+  render() {
+    return (
+      <div>
+        <QuestionWrapper light={this.props.light} onClick={this.openModal} />
+        <Modal isOpen={this.state.isopen} onClose={this.closeModal}>
+          <Form title={this.props.title} />
+        </Modal>
+      </div>
+    );
   }
 }
 

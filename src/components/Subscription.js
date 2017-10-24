@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import globals from "../utils/globals";
+import colors from "../utils/colors";
 import { elementInvisible } from "../utils/mixins";
 
 const SubscriptionSection = styled.div`
@@ -27,6 +28,14 @@ const SubscriptionForm = styled.form`
     border: none;
     outline: 0;
     font-weight: bold;
+    cursor: pointer;
+    transition: color ${globals.transition.duration}
+      ${globals.transition.function};
+
+    &:hover,
+    &:focus {
+      color: ${colors.primary};
+    }
   }
 `;
 

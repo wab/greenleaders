@@ -13,11 +13,13 @@ import colors, { rubriqueColor } from "../utils/colors";
 import globals from "../utils/globals";
 import { noBullet, rowMargin, position } from "../utils/mixins";
 
+const MainWrapper = styled.div``;
+
 class TemplateWrapper extends Component {
   render() {
     const isHeaderExtended = this.props.location.pathname === "/";
     return (
-      <div className="mainWrapper">
+      <MainWrapper>
         <Helmet
           title="GreenLeaders"
           meta={[
@@ -29,7 +31,7 @@ class TemplateWrapper extends Component {
         <Navigation data={this.props.data} />
         <main>{this.props.children()}</main>
         <Footer data={this.props.data} />
-      </div>
+      </MainWrapper>
     );
   }
 }
