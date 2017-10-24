@@ -120,6 +120,7 @@ class Form extends Component {
             onChange={this.handleInputChange}
           />
         </Field>
+        <input type="hidden" name="form-name" value="question" />
         <input type="hidden" name="provenance" value={this.state.title} />
         <Button send large type="submit">
           Envoyer
