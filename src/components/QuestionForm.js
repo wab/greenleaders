@@ -96,7 +96,7 @@ class Form extends Component {
         </Field>
         <input type="hidden" name="form-name" value="question" />
         <input type="hidden" name="bot-field" />
-        <input type="hidden" name="provenance" value={this.state.title} />
+        <input type="hidden" name="provenance" value={this.state.provenance} />
         <Button send large type="submit">
           Envoyer
           <Icon icon="send" />
