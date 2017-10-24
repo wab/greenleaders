@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Helmet from "react-helmet";
 import Icon from "./Icon";
 import colors, { rubriqueColor } from "../utils/colors";
-import { position } from "../utils/mixins";
+import { position, elementInvisible } from "../utils/mixins";
 import globals from "../utils/globals";
 
 const zIndex = 999;
@@ -17,6 +17,8 @@ const Wrapper = styled.div`
   color: ${colors.white};
   overflow-y: auto;
   width: 100%;
+
+  ${props => !props.isOpen && elementInvisible};
 `;
 const Inner = styled.div`
   position: relative;
@@ -54,20 +56,21 @@ class Modal extends React.Component {
   };
 
   render() {
-    if (this.props.isOpen === false) return null;
-
     return (
-      <Wrapper>
+      <Wrapper isOpen={this.props.isOpen}>
         <Inner>{this.props.children}</Inner>
         <Background onClick={e => this.close(e)} />
         <CloseButton onClick={e => this.close(e)}>
           <Icon icon="close" />
         </CloseButton>
-        <Helmet
-          htmlAttributes={{
-            style: "overflow-y: hidden; height: 100%"
-          }}
-        />
+
+        {this.props.isOpen && (
+          <Helmet
+            htmlAttributes={{
+              style: "overflow-y: hidden; height: 100%"
+            }}
+          />
+        )}
       </Wrapper>
     );
   }
