@@ -32,7 +32,7 @@ const Excerpt = styled.article`
   }
   a:hover {
     img {
-      transform: scale(1.1) rotate(-1deg);
+      transform: scale(1.1);
     }
   }
 `;
