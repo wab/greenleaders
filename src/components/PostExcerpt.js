@@ -19,13 +19,31 @@ const ExcerptMeta = styled.div`
   text-transform: uppercase;
 `;
 
+const Excerpt = styled.article`
+  figure {
+    position: relative;
+    overflow: hidden;
+
+    img {
+      display: block;
+      transition: transform ${globals.transition.duration}
+        ${globals.transition.function};
+    }
+  }
+  a:hover {
+    img {
+      transform: scale(1.1) rotate(-1deg);
+    }
+  }
+`;
+
 const PostExcerpt = ({ post }) => {
   const rubriqueSlug = !!post.tag ? post.tag[0].categorie[0].slug : "";
   const category = !!post.tag ? post.tag[0].title : "";
   return (
     <ThemeProvider theme={{ rubrique: rubriqueSlug }}>
-      <BlockLink to={`/${rubriqueSlug}/${post.slug}`}>
-        <article>
+      <Excerpt>
+        <BlockLink to={`/${rubriqueSlug}/${post.slug}`}>
           {post.thumbnail ? (
             <Thumbnail img={post.thumbnail.responsiveResolution} />
           ) : (
@@ -36,8 +54,8 @@ const PostExcerpt = ({ post }) => {
             <strong>{category}</strong> - Le{" "}
             {moment(post.createdAt).format("ll")}
           </ExcerptMeta>
-        </article>
-      </BlockLink>
+        </BlockLink>
+      </Excerpt>
     </ThemeProvider>
   );
 };
