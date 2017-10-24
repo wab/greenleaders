@@ -17,6 +17,15 @@ const Button = styled.button`
     display: inline-block;
     margin-left: 0.5rem;
     vertical-align: middle;
+    transition: transform ${globals.transition.duration}
+      ${globals.transition.function};
+  }
+
+  &:hover,
+  &:focus {
+    svg {
+      transform: scale(1.1) rotate(30deg);
+    }
   }
 `;
 
