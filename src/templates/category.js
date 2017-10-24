@@ -7,6 +7,7 @@ import PostExcerpt from "../components/PostExcerpt";
 import Breadcrumb from "../components/Breadcrumb";
 import HiddenTitle from "../components/HiddenTitle";
 import QuestionForm from "../components/QuestionForm";
+import SubMenu from "../components/SubMenu";
 import styled, { css, ThemeProvider } from "styled-components";
 import colors, { rubriqueColor } from "../utils/colors";
 import globals from "../utils/globals";
@@ -19,38 +20,10 @@ const RowWrapper = styled.div`
   ${rowMargin};
 `;
 
-const SubmenuStyle = styled.nav`
-  ul {
-    ${noBullet()};
-  }
-
-  li {
-  }
-
-  button {
-    background: none;
-    outline: none;
-    border: 0;
-    display: block;
-    text-align: right;
-    padding: 0;
-    margin: 0;
-    color: ${rubriqueColor};
-    text-decoration: none;
-    font-weight: bold;
-    font-size: ${globals.sizes.small};
-    width: 100%;
-    cursor: pointer;
-  }
-`;
-
-const SubMenu = ({ children }) => <SubmenuStyle>{children}</SubmenuStyle>;
-
 class CategoryTemplate extends Component {
   // getInitialState
   state = {
-    tag: this.props.location.search,
-    posts: []
+    tag: null
   };
 
   filterPosts = categorySlug => {
@@ -65,15 +38,27 @@ class CategoryTemplate extends Component {
     });
   };
 
+  updateTag = slug => {
+    !!slug
+      ? this.setState({
+          tag: slug
+        })
+      : this.setState({ tag: null });
+  };
+
   componentWillMount() {
     const urlParams = new URLSearchParams(this.props.location.search);
-    const query = urlParams.get("tag");
-    this.filterPosts(query);
+    this.setState({
+      tag: urlParams.get("tag")
+    });
   }
 
   render() {
-    const { title, menu, slug } = this.props.data.contentfulCategorie;
-    const posts = this.state.posts;
+    const { title, menu, slug, article } = this.props.data.contentfulCategorie;
+    const allPosts = this.props.data.contentfulCategorie.article;
+    const posts = this.state.tag
+      ? _.filter(allPosts, post => _.some(post.tag, { slug: this.state.tag }))
+      : allPosts;
 
     return (
       <ThemeProvider theme={{ rubrique: slug }}>
@@ -84,22 +69,11 @@ class CategoryTemplate extends Component {
             <Row divisions={24}>
               <Column lg={4} md={5} mdShift={1} lgShift={2}>
                 {menu && (
-                  <SubMenu menu={menu}>
-                    <ul>
-                      <li>
-                        <button onClick={() => this.filterPosts()}>Tous</button>
-                      </li>
-                      {menu.map((category, index) => (
-                        <li key={index}>
-                          <button
-                            onClick={() => this.filterPosts(category.slug)}
-                          >
-                            {category.title}
-                          </button>
-                        </li>
-                      ))}
-                    </ul>
-                  </SubMenu>
+                  <SubMenu
+                    menu={menu}
+                    update={this.updateTag}
+                    tag={this.state.tag}
+                  />
                 )}
               </Column>
               <Column md={16}>
