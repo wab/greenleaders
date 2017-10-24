@@ -69,58 +69,33 @@ class Form extends Component {
     return (
       <form
         name="question"
-        onSubmit={this.handleSubmit}
+        action="/merci"
         method="post"
         data-netlify="true"
         data-netlify-honeypot="bot-field"
       >
         <Field>
           <Label>Votre prénom</Label>
-          <Input
-            type="text"
-            name="prenom"
-            value={this.state.prenom}
-            onChange={this.handleInputChange}
-          />
+          <Input type="text" name="prenom" />
         </Field>
         <Field>
           <Label>Votre nom </Label>
-          <Input
-            type="text"
-            name="nom"
-            value={this.state.nom}
-            onChange={this.handleInputChange}
-          />
+          <Input type="text" name="nom" />
         </Field>
         <Field>
           <Label>Votre email</Label>
-          <Input
-            required
-            type="email"
-            name="email"
-            value={this.state.email}
-            onChange={this.handleInputChange}
-          />
+          <Input required type="email" name="email" />
         </Field>
         <Field>
           <Label>Votre magasin</Label>
-          <Input
-            type="text"
-            name="magasin"
-            value={this.state.magasin}
-            onChange={this.handleInputChange}
-          />
+          <Input type="text" name="magasin" />
         </Field>
         <Field>
           <Label>Votre message</Label>
-          <Textarea
-            id="message"
-            name="message"
-            value={this.state.message}
-            onChange={this.handleInputChange}
-          />
+          <Textarea id="message" name="message" />
         </Field>
         <input type="hidden" name="form-name" value="question" />
+        <input type="hidden" name="bot-field" />
         <input type="hidden" name="provenance" value={this.state.title} />
         <Button send large type="submit">
           Envoyer
