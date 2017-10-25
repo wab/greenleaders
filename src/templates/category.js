@@ -64,7 +64,9 @@ class CategoryTemplate extends Component {
     return (
       <ThemeProvider theme={{ rubrique: slug }}>
         <div>
-          <Helmet title={`${title} - ${data.site.siteMetadata.title}`} />
+          <Helmet
+            title={`${title} - ${this.props.data.site.siteMetadata.title}`}
+          />
           <HiddenTitle>{title}</HiddenTitle>
           <Page fluid>
             <Row divisions={24}>

@@ -238,7 +238,10 @@ const PostTemplate = ({ data }) => {
     moreInfoUrl
   } = data.contentfulArticle;
 
-  const onTheme = _.filter(rubrique.article, post => post.id !== id);
+  const onTheme = _.filter(
+    rubrique.article,
+    post => post.rubrique.slug === rubrique.slug && post.id !== id
+  );
   const postIndex = _.find(
     data.allContentfulArticle.edges,
     ({ node: post }) => post.id === id
@@ -408,9 +411,14 @@ export const query = graphql`
         slug
         title
         article {
+          id
           slug
           title
+          rubrique {
+            slug
+          }
           tag {
+            slug
             title
             categorie {
               slug
