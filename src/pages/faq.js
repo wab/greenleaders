@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "gatsby-link";
+import Helmet from "react-helmet";
 import { Page, Row, Column } from "hedron";
 import styled from "styled-components";
 import HiddenTitle from "../components/HiddenTitle";
@@ -39,7 +40,8 @@ const Faq = ({ faq }) => (
 const FaqPage = ({ data }) => {
   const faqs = data.allContentfulFaq.edges;
   return (
-    <PageContainer>
+    <PageContainer title="FAQs">
+      <Helmet title={`FAQs - ${data.site.siteMetadata.title}`} />
       <HiddenTitle>Les questions fréquemment posées</HiddenTitle>
       {faqs.map(({ node: faq }, index) => <Faq key={index} faq={faq} />)}
     </PageContainer>
@@ -50,6 +52,11 @@ export default FaqPage;
 
 export const query = graphql`
   query FaqQuery {
+    site {
+      siteMetadata {
+        title
+      }
+    }
     allContentfulFaq {
       edges {
         node {

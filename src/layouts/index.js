@@ -20,13 +20,7 @@ class TemplateWrapper extends Component {
     const isHeaderExtended = this.props.location.pathname === "/";
     return (
       <MainWrapper>
-        <Helmet
-          title="GreenLeaders"
-          meta={[
-            { name: "description", content: "GreenLeaders" },
-            { name: "keywords", content: "sample, something" }
-          ]}
-        />
+        <Helmet title={this.props.data.site.siteMetadata.title} />
         <Header extended={isHeaderExtended} />
         <Navigation data={this.props.data} />
         <main>{this.props.children()}</main>
@@ -44,6 +38,11 @@ export default TemplateWrapper;
 
 export const query = graphql`
   query NavigationQuery {
+    site {
+      siteMetadata {
+        title
+      }
+    }
     allContentfulCategorie(sort: { fields: [order] }) {
       edges {
         node {

@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "gatsby-link";
+import Helmet from "react-helmet";
 import { Page, Row, Column } from "hedron";
 import styled from "styled-components";
 import PageContainer from "../components/PageContainer";
@@ -23,8 +24,9 @@ const StyledParagraph = styled.p`
   }
 `;
 
-const NotFoundPage = () => (
-  <PageContainer>
+const NotFoundPage = ({ data }) => (
+  <PageContainer title="404">
+    <Helmet title={`404 - ${data.site.siteMetadata.title}`} />
     <Title>404</Title>
     <SubTitle>Oups, la page que vous demandez est introuvable.</SubTitle>
     <StyledParagraph>
@@ -35,3 +37,13 @@ const NotFoundPage = () => (
 );
 
 export default NotFoundPage;
+
+export const query = graphql`
+  query Page404Query {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+  }
+`;

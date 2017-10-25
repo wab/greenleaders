@@ -3,7 +3,9 @@ import Link from "gatsby-link";
 import styled from "styled-components";
 import Subscription from "./Subscription";
 import FooterNavigation from "./FooterNavigation";
+import FooterMention from "./FooterMention";
 import globals from "../utils/globals";
+import colors from "../utils/colors";
 import logo from "../assets/svg/logo-footer.svg";
 
 const LogoFooter = styled.footer`
@@ -20,6 +22,7 @@ const Footer = props => (
   <div>
     <Subscription />
     <FooterNavigation data={props.data} />
+    <FooterMention />
     <LogoFooter>
       <img src={logo} alt="Yves Rocher" />
     </LogoFooter>
