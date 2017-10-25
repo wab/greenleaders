@@ -8,7 +8,13 @@ const Items = styled.ul`
   ${noBullet()};
 `;
 const Item = styled.li`
-  margin-bottom: ${globals.sizes.base};
+  display: inline-block;
+  margin-right: ${globals.sizes.base};
+  @media (min-width: 768px) {
+    margin-right: 0;
+    margin-bottom: ${globals.sizes.base};
+    display: block;
+  }
 `;
 
 const ItemButton = styled.button`
@@ -16,7 +22,6 @@ const ItemButton = styled.button`
   outline: none;
   border: 0;
   display: block;
-  text-align: right;
   padding: 0;
   margin: 0;
   color: ${rubriqueColor};
@@ -26,21 +31,30 @@ const ItemButton = styled.button`
   width: 100%;
   cursor: pointer;
   position: relative;
+  text-align: left;
+  @media (min-width: 768px) {
+    text-align: right;
+  }
 
   .active & {
     font-weight: bold;
     &:before {
       content: "";
-      display: block;
+      display: inline-block;
+      vertical-align: center;
+      margin-right: 0.5rem;
       width: 0.5rem;
       height: 0.5rem;
       background: ${rubriqueColor};
       opacity: 0.5;
       transition: opacity ${globals.transition.duration}
         ${globals.transition.function};
-      transform: translateY(-50%);
       z-index: -1;
-      ${position("50%", "-1rem", "auto", "auto")};
+      @media (min-width: 768px) {
+        margin-right: 0;
+        transform: translateY(-50%);
+        ${position("50%", "-1rem", "auto", "auto")};
+      }
     }
   }
 `;

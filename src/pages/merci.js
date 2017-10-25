@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "gatsby-link";
+import Helmet from "react-helmet";
 import styled from "styled-components";
 import PageContainer from "../components/PageContainer";
 import globals from "../utils/globals";
@@ -20,7 +21,8 @@ const StyledParagraph = styled.p`
 
 const ThxPage = ({ data }) => {
   return (
-    <PageContainer>
+    <PageContainer title="merci">
+      <Helmet title={`Merci - ${data.site.siteMetadata.title}`} />
       <Title>Merci !</Title>
       <StyledParagraph>
         Votre question nous a été transmise. Nous allons vous répondre dans les
@@ -32,3 +34,13 @@ const ThxPage = ({ data }) => {
 };
 
 export default ThxPage;
+
+export const query = graphql`
+  query PageThxQuery {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+  }
+`;

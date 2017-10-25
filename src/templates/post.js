@@ -2,6 +2,7 @@ import React from "react";
 import _ from "lodash";
 import moment from "moment";
 import Link from "gatsby-link";
+import Helmet from "react-helmet";
 import { Page, Row, Column } from "hedron";
 import Thumbnail from "../components/Thumbnail";
 import Breadcrumb from "../components/Breadcrumb";
@@ -227,6 +228,7 @@ const PostTemplate = ({ data }) => {
     title,
     subtitle,
     rubrique,
+    tag,
     id,
     thumbnail,
     thumbAlt,
@@ -236,7 +238,10 @@ const PostTemplate = ({ data }) => {
     moreInfoUrl
   } = data.contentfulArticle;
 
-  const onTheme = _.filter(rubrique.article, post => post.id !== id);
+  const onTheme = _.filter(
+    rubrique.article,
+    post => post.rubrique.slug === rubrique.slug && post.id !== id
+  );
   const postIndex = _.find(
     data.allContentfulArticle.edges,
     ({ node: post }) => post.id === id
@@ -245,10 +250,13 @@ const PostTemplate = ({ data }) => {
   return (
     <ThemeProvider theme={{ rubrique: rubrique.slug }}>
       <div>
-        <Breadcrumb />
+        <Helmet title={`${title} - ${data.site.siteMetadata.title}`} />
         <Page fluid>
           <article>
             <Row divisions={24}>
+              <Column lg={17} lgShift={3} md={22} mdShift={1}>
+                <Breadcrumb rubrique={rubrique} title={title} tag={tag} />
+              </Column>
               <Column lg={5} lgShift={3} md={6} mdShift={1}>
                 {thumbnail && (
                   <Thumbnail
@@ -363,6 +371,11 @@ export default PostTemplate;
 
 export const query = graphql`
   query PostQuery($id: String) {
+    site {
+      siteMetadata {
+        title
+      }
+    }
     contentfulArticle(id: { eq: $id }) {
       id
       createdAt
@@ -398,9 +411,14 @@ export const query = graphql`
         slug
         title
         article {
+          id
           slug
           title
+          rubrique {
+            slug
+          }
           tag {
+            slug
             title
             categorie {
               slug
@@ -415,6 +433,10 @@ export const query = graphql`
             }
           }
         }
+      }
+      tag {
+        slug
+        title
       }
     }
     allContentfulArticle {

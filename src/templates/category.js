@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Link from "gatsby-link";
 import _ from "lodash";
 import moment from "moment";
+import Helmet from "react-helmet";
 import { Page, Row, Column } from "hedron";
 import PostExcerpt from "../components/PostExcerpt";
 import Breadcrumb from "../components/Breadcrumb";
@@ -63,10 +64,15 @@ class CategoryTemplate extends Component {
     return (
       <ThemeProvider theme={{ rubrique: slug }}>
         <div>
-          <Breadcrumb />
+          <Helmet
+            title={`${title} - ${this.props.data.site.siteMetadata.title}`}
+          />
           <HiddenTitle>{title}</HiddenTitle>
           <Page fluid>
             <Row divisions={24}>
+              <Column lg={17} lgShift={3} md={22} mdShift={1}>
+                <Breadcrumb title={title} />
+              </Column>
               <Column lg={4} md={5} mdShift={1} lgShift={2}>
                 {menu && (
                   <SubMenu
@@ -112,6 +118,11 @@ export default CategoryTemplate;
 
 export const query = graphql`
   query CategoryQuery($id: String) {
+    site {
+      siteMetadata {
+        title
+      }
+    }
     contentfulCategorie(id: { eq: $id }) {
       title
       slug
