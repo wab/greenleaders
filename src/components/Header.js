@@ -38,7 +38,7 @@ const Header = props => {
           <img
             src={blockmark}
             alt="GreenLeaders"
-            width={props.extended ? "500" : "350"}
+            width={props.extended ? "320" : "220"}
           />
         </h1>
       </MainHeader>
