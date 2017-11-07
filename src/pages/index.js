@@ -99,6 +99,11 @@ export default IndexPage;
 
 export const query = graphql`
   query IndexQuery {
+    site {
+      siteMetadata {
+        title
+      }
+    }
     allContentfulArticle {
       edges {
         node {

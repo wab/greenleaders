@@ -180,6 +180,11 @@ const Main = styled.main`
   }
 `;
 
+const FileLink = styled.div`
+  margin: ${globals.spaces.base};
+  margin-left: 0;
+`;
+
 const RowWrapper = styled.div`
   ${rowMargin};
   margin-top: 0;
@@ -237,6 +242,7 @@ const PostTemplate = ({ data }) => {
     id,
     thumbnail,
     thumbAlt,
+    document,
     summary,
     main,
     speech,
@@ -298,6 +304,17 @@ const PostTemplate = ({ data }) => {
                         __html: main.childMarkdownRemark.html
                       }}
                     />
+                    {document && (
+                      <FileLink>
+                        <a
+                          href={document.file.url}
+                          title={document.description}
+                          target="_blank"
+                        >
+                          <Icon icon="download" /> Télécharger la pièce jointe
+                        </a>
+                      </FileLink>
+                    )}
                   </Main>
                 )}
 
@@ -396,6 +413,12 @@ export const query = graphql`
         }
       }
       thumbAlt
+      document {
+        description
+        file {
+          url
+        }
+      }
       summary {
         childMarkdownRemark {
           html
