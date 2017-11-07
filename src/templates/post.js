@@ -29,13 +29,13 @@ const ArticleHeader = styled.header`
   h1 {
     font-size: ${globals.sizes.large};
     margin-bottom: 8px;
-    line-height: 1.2em;
+    line-height: 1.3;
   }
 
   h2 {
     color: ${colors.grey.base};
     font-size: ${globals.sizes.medium};
-    line-height: 1.2em;
+    line-height: 1.3;
   }
 `;
 
@@ -107,7 +107,7 @@ const Summary = styled.section`
   h2,
   h3 {
     font-size: 1.2em;
-    line-height: 1.5;
+    line-height: 1.3;
   }
 
   a {
@@ -118,9 +118,10 @@ const Summary = styled.section`
 `;
 
 const Main = styled.main`
+  font-weight: 300;
   h2,
   h3 {
-    line-height: 1.2;
+    line-height: 1.3;
   }
 
   ${includeListStyle};
@@ -181,11 +182,13 @@ const Main = styled.main`
 
 const RowWrapper = styled.div`
   ${rowMargin};
+  margin-top: 0;
 `;
 
 const Navigation = styled.nav`
   border-top: solid 1px ${colors.grey.light};
   padding: ${globals.sizes.base} 0;
+  margin-top: ${globals.sizes.medium};
 `;
 
 const NavigationItem = styled.div`
@@ -197,9 +200,11 @@ const NavigationItem = styled.div`
     display: block;
     text-decoration: none;
     font-family: ${globals.fonts.alt};
+    font-weight: 300;
     span {
       color: ${rubriqueColor};
       display: block;
+      font-size: ${globals.sizes.small};
       font-family: ${globals.fonts.default};
       font-weight: bold;
     }

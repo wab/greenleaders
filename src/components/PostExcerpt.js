@@ -11,11 +11,13 @@ moment.locale("fr");
 
 const ExcerptTitle = styled.h2`
   font-size: ${globals.sizes.base};
+  line-height: 1.3;
   margin-bottom: ${globals.spaces.xsmall};
 `;
 const ExcerptMeta = styled.div`
   color: ${rubriqueColor};
   font-size: ${globals.sizes.xsmall};
+  line-height: 1.2;
   text-transform: uppercase;
 `;
 
