@@ -17,7 +17,6 @@ const MainNavigation = styled.nav`
   border-bottom: 1px solid rgba(47, 47, 48, 0.15);
   text-align: center;
   ul {
-    display: inline-block;
     margin: 0;
     padding: 0;
     list-style-type: none;
@@ -27,6 +26,10 @@ const MainNavigation = styled.nav`
 const Item = styled.li`
   display: inline-block;
   margin-bottom: 0;
+
+  @media (max-width: 640px) {
+    display: block;
+  }
 
   a {
     display: block;
@@ -38,6 +41,10 @@ const Item = styled.li`
     text-decoration: none;
     position: relative;
     transition: color 250ms ease-in;
+
+    @media (max-width: 640px) {
+      padding: 0.5em;
+    }
 
     &:after {
       content: "";

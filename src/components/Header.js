@@ -12,11 +12,18 @@ const MainHeader = styled.header`
   background-position: center;
   background-size: cover;
   display: flex;
+  padding: 1em;
   align-items: center;
   justify-content: center;
   height: ${props => (props.extended ? "80vh" : "285px")};
   position: relative;
   transition: height 250ms ease-in;
+
+  @media (max-width: 640px) {
+    height: ${props => (props.extended ? "100vh" : "200px")};
+    background-position: ${props => (props.extended ? "-250px" : "-80px")};
+    align-items: ${props => (props.extended ? "flex-start" : "center")};
+  }
 
   h1 {
     margin: 0;

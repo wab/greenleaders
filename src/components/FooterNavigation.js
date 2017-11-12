@@ -15,7 +15,7 @@ const RubriqueTitle = styled(Link)`
   display: block;
   font-weight: bold;
   font-size: ${globals.sizes.small};
-  color: inherit;
+  color: ${rubriqueColor};
   text-decoration: none;
   margin-bottom: ${globals.sizes.base};
 
