@@ -149,7 +149,7 @@ const Main = styled.main`
       padding-top: 3.5rem;
       position: relative;
 
-      > strong {
+      > strong:first-child {
         color: ${rubriqueColor};
         display: block;
         font-weight: 400;
