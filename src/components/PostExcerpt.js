@@ -40,7 +40,8 @@ const Excerpt = styled.article`
 `;
 
 const PostExcerpt = ({ post }) => {
-  const rubriqueSlug = !!post.tag ? post.tag[0].categorie[0].slug : "";
+  const rubriqueSlug =
+    !!post.tag && !!post.tag[0].categorie ? post.tag[0].categorie[0].slug : "";
   const category = !!post.tag ? post.tag[0].title : "";
   return (
     <ThemeProvider theme={{ rubrique: rubriqueSlug }}>
