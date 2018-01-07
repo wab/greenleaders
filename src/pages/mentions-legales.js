@@ -52,6 +52,11 @@ const NoticePage = ({ data }) => {
         e-mail : &nbsp;
         <a href="maito:contact@yves-rocher.fr">contact@yves-rocher.fr</a>
       </StyledParagraph>
+      <SubTitle>Hébergeur du site</SubTitle>
+      <StyledParagraph>
+        Le présent Site est hébergé chez Netify. Adresse du siège social : Siège
+        social. 610 22nd Street, Suite 315 San Francisco, CA 94107 États-Unis
+      </StyledParagraph>
       <SubTitle>Informatique et Libertés</SubTitle>
       <StyledParagraph>
         Conformément à la loi 78-17 du 6 janvier 1978 modifiée relative à
