@@ -11,9 +11,28 @@ const Mention = styled.div`
   font-style: italic;
   text-align: center;
 `;
+const Links = styled.div`
+  color: ${colors.grey.medium};
+  font-size: ${globals.sizes.xsmall};
+  text-align: center;
+
+  a {
+    color: ${colors.grey.medium};
+
+    &:hover,
+    &:focus {
+      color: ${colors.primary};
+    }
+  }
+`;
 
 const FooterMention = () => (
-  <Mention>* GreenLeaders : Ambassadeurs verts.</Mention>
+  <div>
+    <Mention>* GreenLeaders : Ambassadeurs verts.</Mention>
+    <Links>
+      <Link to="/mentions-legales">Mentions Légales</Link>
+    </Links>
+  </div>
 );
 
 export default FooterMention;
