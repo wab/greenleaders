@@ -9,6 +9,7 @@ import Breadcrumb from "../components/Breadcrumb";
 import HiddenTitle from "../components/HiddenTitle";
 import QuestionForm from "../components/QuestionForm";
 import SubMenu from "../components/SubMenu";
+import RowWrapper from "../components/RowWrapper";
 import styled, { css, ThemeProvider } from "styled-components";
 import colors, { rubriqueColor } from "../utils/colors";
 import globals from "../utils/globals";
@@ -17,9 +18,6 @@ import "url-search-params-polyfill";
 import "moment/locale/fr";
 moment.locale("fr");
 
-const RowWrapper = styled.div`
-  ${rowMargin};
-`;
 
 class CategoryTemplate extends Component {
   // getInitialState
@@ -42,8 +40,8 @@ class CategoryTemplate extends Component {
   updateTag = slug => {
     !!slug
       ? this.setState({
-          tag: slug
-        })
+        tag: slug
+      })
       : this.setState({ tag: null });
   };
 
@@ -92,12 +90,12 @@ class CategoryTemplate extends Component {
                         </Column>
                       ))
                     ) : (
-                      <Column lgShift={1}>
-                        <p>
-                          Il n'y a pas encore d'articles dans cette catégorie !
+                        <Column lgShift={1}>
+                          <p>
+                            Il n'y a pas encore d'articles dans cette catégorie !
                         </p>
-                      </Column>
-                    )}
+                        </Column>
+                      )}
                   </Row>
                 </RowWrapper>
               </Column>

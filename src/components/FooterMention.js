@@ -30,7 +30,7 @@ const FooterMention = () => (
   <div>
     <Mention>* GreenLeaders : Ambassadeurs verts.</Mention>
     <Links>
-      <Link to="/mentions-legales">Mentions Légales</Link>
+      <a href="https://elearning-yvesrocher.elmg.net">e-learning</a> / <Link to="/mentions-legales">Mentions Légales</Link>
     </Links>
   </div>
 );
