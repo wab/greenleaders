@@ -278,6 +278,7 @@ const ActuTemplate = ({ data }) => {
   const {
     createdAt,
     title,
+    subtitle,
     id,
     thumbnail,
     text,
@@ -285,55 +286,58 @@ const ActuTemplate = ({ data }) => {
   } = data.contentfulActus;
 
   return (
-    <div>
-      <Helmet title={`${title} - ${data.site.siteMetadata.title}`} />
-      <Page fluid>
-        <article>
-          <Row divisions={24}>
-            <Column lg={17} lgShift={3} md={22} mdShift={1}>
-              <Breadcrumb title={title} />
-            </Column>
-            <Column lg={5} lgShift={3} md={6} mdShift={1}>
-              {thumbnail && (
-                <Thumbnail
-                  img={thumbnail.responsiveResolution}
-                  caption={thumbnail.description}
-                />
-              )}
-            </Column>
-            <Column lg={12} mdShift={1} md={15}>
-              <ArticleHeader>
-                <time dateTime={createdAt}>
-                  le {moment(createdAt).format("ll")}
-                </time>
-                <h1>{title}</h1>
-              </ArticleHeader>
-              <Main>
-                {text && (
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: text.childMarkdownRemark.html
-                    }}
+    <ThemeProvider theme={{ rubrique: 'actu' }}>
+      <div>
+        <Helmet title={`${title} - ${data.site.siteMetadata.title}`} />
+        <Page fluid>
+          <article>
+            <Row divisions={24}>
+              <Column lg={17} lgShift={3} md={22} mdShift={1}>
+                <Breadcrumb title={title} />
+              </Column>
+              <Column lg={5} lgShift={3} md={6} mdShift={1}>
+                {thumbnail && (
+                  <Thumbnail
+                    img={thumbnail.responsiveResolution}
+                    caption={thumbnail.description}
                   />
                 )}
-                {document && (
-                  <FileLink>
-                    <a
-                      href={document.file.url}
-                      title={document.description}
-                      target="_blank"
-                    >
-                      <Icon icon="download" /> Télécharger la pièce jointe
+              </Column>
+              <Column lg={12} mdShift={1} md={15}>
+                <ArticleHeader>
+                  <time dateTime={createdAt}>
+                    le {moment(createdAt).format("ll")}
+                  </time>
+                  <h1>{title}</h1>
+                  <h2>{subtitle}</h2>
+                </ArticleHeader>
+                <Main>
+                  {text && (
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: text.childMarkdownRemark.html
+                      }}
+                    />
+                  )}
+                  {document && (
+                    <FileLink>
+                      <a
+                        href={document.file.url}
+                        title={document.description}
+                        target="_blank"
+                      >
+                        <Icon icon="download" /> Télécharger la pièce jointe
                         </a>
-                  </FileLink>
-                )}
-              </Main>
+                    </FileLink>
+                  )}
+                </Main>
 
-            </Column>
-          </Row>
-        </article>
-      </Page>
-    </div>
+              </Column>
+            </Row>
+          </article>
+        </Page>
+      </div>
+    </ThemeProvider>
   );
 };
 
@@ -350,6 +354,7 @@ export const query = graphql`
       id
       createdAt
       title
+      subtitle
       thumbnail {
         description
         responsiveResolution(width: 400, height: 400) {
