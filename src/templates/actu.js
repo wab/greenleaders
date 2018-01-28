@@ -280,53 +280,60 @@ const ActuTemplate = ({ data }) => {
     title,
     id,
     thumbnail,
-    text
+    text,
+    document
   } = data.contentfulActus;
 
   return (
-    <ThemeProvider theme={{ rubrique: rubrique.slug }}>
-      <div>
-        <Helmet title={`${title} - ${data.site.siteMetadata.title}`} />
-        <Page fluid>
-          <article>
-            <Row divisions={24}>
-              <Column lg={17} lgShift={3} md={22} mdShift={1}>
-                <Breadcrumb rubrique={rubrique} title={title} tag={tag} />
-              </Column>
-              <Column lg={5} lgShift={3} md={6} mdShift={1}>
-                {thumbnail && (
-                  <Thumbnail
-                    img={thumbnail.responsiveResolution}
-                    alt={thumbAlt}
-                    caption={thumbnail.description}
+    <div>
+      <Helmet title={`${title} - ${data.site.siteMetadata.title}`} />
+      <Page fluid>
+        <article>
+          <Row divisions={24}>
+            <Column lg={17} lgShift={3} md={22} mdShift={1}>
+              <Breadcrumb title={title} />
+            </Column>
+            <Column lg={5} lgShift={3} md={6} mdShift={1}>
+              {thumbnail && (
+                <Thumbnail
+                  img={thumbnail.responsiveResolution}
+                  caption={thumbnail.description}
+                />
+              )}
+            </Column>
+            <Column lg={12} mdShift={1} md={15}>
+              <ArticleHeader>
+                <time dateTime={createdAt}>
+                  le {moment(createdAt).format("ll")}
+                </time>
+                <h1>{title}</h1>
+              </ArticleHeader>
+              <Main>
+                {text && (
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: text.childMarkdownRemark.html
+                    }}
                   />
                 )}
-              </Column>
-              <Column lg={12} mdShift={1} md={15}>
-                <ArticleHeader>
-                  <time dateTime={createdAt}>
-                    le {moment(createdAt).format("ll")}
-                  </time>
-                  <h1>{title}</h1>
-                  <h2>{subtitle}</h2>
-                </ArticleHeader>
-                {text && (
-                  <Main>
-                    <SectionTitle>in concreto</SectionTitle>
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: text.childMarkdownRemark.html
-                      }}
-                    />
-                  </Main>
+                {document && (
+                  <FileLink>
+                    <a
+                      href={document.file.url}
+                      title={document.description}
+                      target="_blank"
+                    >
+                      <Icon icon="download" /> Télécharger la pièce jointe
+                        </a>
+                  </FileLink>
                 )}
+              </Main>
 
-              </Column>
-            </Row>
-          </article>
-        </Page>
-      </div>
-    </ThemeProvider>
+            </Column>
+          </Row>
+        </article>
+      </Page>
+    </div>
   );
 };
 
@@ -355,6 +362,12 @@ export const query = graphql`
       text {
         childMarkdownRemark {
           html
+        }
+      }
+      document {
+        description
+        file {
+          url
         }
       }
     }

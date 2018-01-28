@@ -95,7 +95,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
                 const ActuTemplate = path.resolve(`./src/templates/actu.js`);
                 _.each(result.data.allContentfulActus.edges, ({ node }) => {
                   const page = {
-                    path: `actus/${node.slug}/`,
+                    path: `actu/${node.slug}/`,
                     component: slash(ActuTemplate),
                     context: {
                       id: node.id
