@@ -21,6 +21,7 @@ export const rubriqueColor = theme("rubrique", {
   environnement: colors.environnement,
   produits: colors.produits,
   home: colors.grey.dark,
+  actu: colors.primary,
   none: colors.primary
 });
 

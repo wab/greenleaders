@@ -10,7 +10,7 @@ import "moment/locale/fr";
 moment.locale("fr");
 
 const ExcerptTitle = styled.h2`
-  font-size: ${globals.sizes.base};
+  font-size: ${globals.sizes.small};
   line-height: 1.3;
   margin-bottom: ${globals.spaces.xsmall};
 `;

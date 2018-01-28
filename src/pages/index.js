@@ -28,9 +28,10 @@ const PostItemTitle = styled.h3`
   line-height: 1.4;
   margin-bottom: 0.2rem;
 `;
-const SectionTitle = styled.h2`
+const SectionTitle = styled.p`
   color: ${colors.grey.base};
-  font-size: ${globals.sizes.base};
+  font-size: ${globals.sizes.small};
+  text-transform: uppercase;
   line-height: 1.4;
   margin-bottom: ${props => props.withMargin ? '20px' : 0};
 `;
