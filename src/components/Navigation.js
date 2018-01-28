@@ -93,7 +93,9 @@ class Navigation extends Component {
             </Link>
           </Item>
           <Item secondary>
-            <a href="https://elearning-yvesrocher.elmg.net">e-learning</a>
+            <Link to="/actus" activeClassName="active">
+              Actualités
+            </Link>
           </Item>
         </ul>
       </MainNavigation>
