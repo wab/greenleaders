@@ -22,6 +22,8 @@ const ExcerptMeta = styled.div`
 `;
 
 const Excerpt = styled.article`
+  margin-bottom: ${globals.spaces.base};
+
   figure {
     position: relative;
     overflow: hidden;
