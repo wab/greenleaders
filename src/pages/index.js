@@ -61,7 +61,7 @@ const PostItem = ({ post, isActu }) => {
 
 const IndexPage = ({ data }) => {
   const posts = data.allContentfulArticle.edges;
-  const actus = data.allContentfulActus.edges.filter((post, i) => i <= 4);
+  const actus = data.allContentfulActus.edges.filter((post, i) => i < 4);
   const focusedPosts = posts.filter((post, i) => i <= 3);
   const otherPosts = posts.filter((post, i) => i > 3);
   const renderOtherPosts = otherPosts.length > 0 ? (
